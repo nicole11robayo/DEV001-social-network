@@ -1,6 +1,8 @@
-export const Register = () => {
-  const Home = document.createElement('section');
+// import { registroGoogle } from '../Funciones Firebase/auth.js';
 
+export const Register = () => {
+  const Home = document.createElement('form');
+  Home.id = 'home';
   const title = document.createElement('h1');
   title.innerText = 'Laboratorians Music';
 
@@ -8,31 +10,43 @@ export const Register = () => {
   welcome.innerText = 'Inicia sesión para compartir música con la comunidad de Laboratoria.';
 
   const userDiv = document.createElement('div');
-  const user = document.createElement('p');
+  const user = document.createElement('label');
   user.innerText = 'Usuario';
   const userInput = document.createElement('input');
   userInput.placeholder = 'User';
+  userInput.id = 'userInput';
   const correoDiv = document.createElement('div');
-  const correo = document.createElement('p');
+  const correo = document.createElement('label');
   correo.innerText = 'Correo';
   const correoInput = document.createElement('input');
   correoInput.placeholder = 'Correo';
+  correoInput.id = 'correoInput';
   const correoInput2 = document.createElement('input');
   correoInput2.placeholder = 'Verifica tu correo';
+  correoInput2.id = 'correoInput2';
 
   const contraseñaDiv = document.createElement('div');
-  const contraseña = document.createElement('p');
+  const contraseña = document.createElement('label');
   contraseña.innerText = 'Contraseña';
   const contraseñaInput = document.createElement('input');
   contraseñaInput.placeholder = 'Contraseña';
+  contraseñaInput.id = 'contraseñaInput';
   const contraseñaInput2 = document.createElement('input');
   contraseñaInput2.placeholder = 'Verifica tu contraseña';
+  contraseñaInput2.id = 'contraseñaInput2';
 
   const buttonRegister = document.createElement('button');
   buttonRegister.innerText = 'Registrarse';
+  buttonRegister.id = 'registerButton';
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerText = 'Ingresa con Google';
+
+  //buttonGoogle.addEventListener('click', async (e) => {
+  //try {
+  //await registroGoogle();
+  //} catch (error) {}
+  //});
 
   userDiv.appendChild(user);
   userDiv.appendChild(userInput);

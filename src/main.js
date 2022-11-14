@@ -9,7 +9,7 @@ import { Register } from './componentes/registro.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': Register,
+  '/src/': Register,
 };
 
 const componente = routes[window.location.pathname];

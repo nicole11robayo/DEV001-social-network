@@ -3,12 +3,16 @@
 //import { async } from 'regenerator-runtime';
 import { Register } from '../componentes/registro.js';
 
-const registroButton = document.getElementById('registerButton');
+const registroButton = document.getElementById('home');
+console.log(registroButton);
 
-
-registroButton.addEventListener('click', async (e) => {
+registroButton.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  const email = registroButton['correoInput'].value;
+  const contraseña = registroButton['contraseñaInput'].value;
   console.log(registroButton);
+  console.log(email, contraseña);
 });
 
 // const provider = new GoogleAuthProvider();

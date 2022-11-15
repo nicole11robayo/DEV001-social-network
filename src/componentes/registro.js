@@ -24,9 +24,11 @@ export const Register = () => {
   const correoInput = document.createElement('input');
   correoInput.placeholder = 'Correo';
   correoInput.id = 'correoInput';
+  correoInput.setAttribute('type', 'email');
   const correoInput2 = document.createElement('input');
   correoInput2.placeholder = 'Verifica tu correo';
   correoInput2.id = 'correoInput2';
+  correoInput2.setAttribute('type', 'email');
 
   const contraseñaDiv = document.createElement('div');
   const contraseña = document.createElement('label');

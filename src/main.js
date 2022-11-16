@@ -3,34 +3,47 @@
 // import { myFunction } from './lib/index.js';
 
 // myFunction();
-//import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, createUser } from './firebase.js';
-import { Register } from './componentes/registro.js';
+
+import { Register } from './componentes/Registro/registroindex.js';
 
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/src/': Register,
+  '/': Register,
 };
 
 const componente = routes[window.location.pathname];
 rootDiv.appendChild(componente());
+// routes[window.location.pathname].loadEvents()
 
-const registroButton = document.getElementById('home');
-console.log(registroButton);
+// const registroButton = document.getElementById('home');
+// console.log(registroButton);
 
-registroButton.addEventListener('submit', (e) => {
-  e.preventDefault();
+// registroButton.addEventListener('submit', (e) => {
+//   e.preventDefault();
 
-  const email = registroButton.correoInput.value;
-  const contraseña = registroButton['contraseñaInput'].value;
-  console.log(registroButton);
-  console.log(email, contraseña);
+//   const email = registroButton.correoInput.value;
+//   const contraseña = registroButton['contraseñaInput'].value;
+//   console.log(registroButton);
+//   console.log(email, contraseña);
 
-  /*.then {
-    const userCredentials = await createUser(auth, email, contraseña);
-    console.log(userCredentials);
-  } catch (error) {
-    console.log(error);
-  }*/
-});
+//   try {
+//     const userCredentials = createUserWithEmailAndPassword(auth, email, contraseña);
+//     console.log(userCredentials);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// const googleButton = document.querySelector('#buttonGoogle');
+
+// googleButton.addEventListener('click', () => {
+//   const provider = new GoogleAuthProvider();
+
+//   try {
+//     const credenciales = signInWithPopup(auth, provider);
+//     console.log(credenciales);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });

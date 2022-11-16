@@ -1,8 +1,8 @@
-// import { registroGoogle } from '../Funciones Firebase/auth.js';
-
-// podemos crear funciones separadas para crear los diferentes componentes
+import { registerClick, googleClick } from './registroevents.js';
 
 export const Register = () => {
+  const registro = document.createElement('section');
+
   const Home = document.createElement('form');
   // Home.id = 'home';
   Home.setAttribute('id', 'home');
@@ -48,6 +48,7 @@ export const Register = () => {
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.innerText = 'Ingresa con Google';
+  buttonGoogle.setAttribute('id', 'buttonGoogle');
 
   // buttonGoogle.addEventListener('click', async (e) => {
   // try {
@@ -72,7 +73,18 @@ export const Register = () => {
   Home.appendChild(correoDiv);
   Home.appendChild(contraseñaDiv);
   Home.appendChild(buttonRegister);
-  Home.appendChild(buttonGoogle);
+  // Home.appendChild(buttonGoogle);
+  registro.appendChild(Home);
+  registro.appendChild(buttonGoogle);
 
-  return Home;
+
+//   Home.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//   });     
+  buttonRegister.addEventListener('submit', registerClick(correoInput, contraseñaInput));
+  buttonGoogle.addEventListener('click', googleClick());
+
+  return registro;
+
 };
+ 

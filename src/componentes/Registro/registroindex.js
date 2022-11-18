@@ -26,6 +26,7 @@ export const Register = () => {
   const errorUser = document.createElement('h6');
   errorUser.innerText = 'El usuario debe tener entre 4 y 16 caracteres, puede contener números, _ y - .';
   errorUser.setAttribute('class', 'error');
+  errorUser.setAttribute('id', 'message-error-user-1');
 
   const correoDiv = document.createElement('div');
   const correo = document.createElement('label');
@@ -40,6 +41,7 @@ export const Register = () => {
   const errorCorreo = document.createElement('h6');
   errorCorreo.innerText = 'Ejemplo: example@correo.com';
   errorCorreo.setAttribute('class', 'error');
+  errorCorreo.setAttribute('id', 'message-error-mail-1');
 
   const correoInput2 = document.createElement('input');
   correoInput2.setAttribute('class', 'inputForm');
@@ -50,6 +52,7 @@ export const Register = () => {
   const errorCorreo2 = document.createElement('h6');
   errorCorreo2.innerText = 'Ambos correos deben ser iguales';
   errorCorreo2.setAttribute('class', 'error');
+  errorCorreo2.setAttribute('id', 'message-error-mail-2');
 
   const contraseñaDiv = document.createElement('div');
   const contraseña = document.createElement('label');
@@ -64,6 +67,7 @@ export const Register = () => {
   const errorContraseña = document.createElement('h6');
   errorContraseña.innerText = 'La contraseña debe tener entre 6 y 16 caracteres, puede contener números, _ y - .';
   errorContraseña.setAttribute('class', 'error');
+  errorContraseña.setAttribute('id', 'message-error-contraseña-1');
 
   const contraseñaInput2 = document.createElement('input');
   contraseñaInput2.setAttribute('class', 'inputForm');
@@ -74,6 +78,7 @@ export const Register = () => {
   const errorContraseña2 = document.createElement('h6');
   errorContraseña2.innerText = 'Ambas contraseñas deben ser iguales';
   errorContraseña2.setAttribute('class', 'error');
+  errorContraseña2.setAttribute('id', 'message-error-contraseña-2');
 
   const buttonRegister = document.createElement('button');
   buttonRegister.innerText = 'Registrarse';
@@ -123,12 +128,13 @@ export const Register = () => {
   //   });
 
   const inputs = Home.querySelectorAll('input');
-  inputs.forEach((input) => {
+  inputs.forEach((input, index) => {
+    const messageError = Home.querySelectorAll('h6')[index].id;
     input.addEventListener('keyup', () => {
-      validar(input.name, input.value);
+      validar(input.name, input.value, messageError);
     });
     input.addEventListener('blur', () => {
-      validar(input.name, input.value);
+      validar(input.name, input.value, messageError);
     });
   });
 

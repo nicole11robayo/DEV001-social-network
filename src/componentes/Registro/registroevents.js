@@ -1,5 +1,4 @@
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { async } from 'regenerator-runtime';
 import { auth } from '/firebase.js';
 // import { Register } from '/componentes/Registro/registroindex.js';
 

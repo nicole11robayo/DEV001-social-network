@@ -32,11 +32,11 @@ export const googleClick = () => {
     .catch((error) => console.log(error));
 };
 
-export const google = async () => {
-  const provider = new GoogleAuthProvider();
+// export const google = async () => {
+//   const provider = new GoogleAuthProvider();
 
-  try {
-    const credenciales = await signInWithPopup(auth, provider);
-    console.log(credenciales);
-  } catch (error) { console.log(error); }
-};
+//   try {
+//     const credenciales = await signInWithPopup(auth, provider);
+//     console.log(credenciales);
+//   } catch (error) { console.log(error); }
+// };

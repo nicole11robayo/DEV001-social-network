@@ -67,3 +67,21 @@ button img {
   float: left;
   margin-left: 10px;
 }
+
+.inputForm.check {
+  background-color: rgba(104, 203, 104, 0.682);
+}
+
+.inputForm.wrong {
+  background-color: rgba(227, 106, 106, 0.735);
+}
+
+.error {
+  display: none;
+  font-size: small;
+  margin: 0;
+}
+
+.error.activo {
+  display: block;
+}

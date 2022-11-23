@@ -16,15 +16,15 @@ export const Register = () => {
 
   const userDiv = document.createElement('div');
   const user = document.createElement('label');
-  user.innerText = 'Usuario';
+  user.innerText = 'Nombre';
 
   const userInput = document.createElement('input');
   userInput.setAttribute('name', 'usuario');
-  userInput.placeholder = 'Ingresa tu usuario';
+  userInput.placeholder = 'Ingresa tu nombre';
   userInput.id = 'userInput';
   userInput.setAttribute('class', 'inputForm');
   const errorUser = document.createElement('h6');
-  errorUser.innerText = 'El usuario debe tener entre 4 y 16 caracteres, puede contener números, _ y - .';
+  errorUser.innerText = 'El nombre debe tener entre 3 y 16 caracteres, puede contener números, _ y - .';
   errorUser.setAttribute('class', 'error');
   errorUser.setAttribute('id', 'message-error-user-1');
 
@@ -141,6 +141,7 @@ export const Register = () => {
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
     registerClick(correoInput, contraseñaInput);
+    //datosUsuario(userInput, correoInput, contraseñaInput);
     // inputForm();
   });
 

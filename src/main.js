@@ -4,16 +4,27 @@
 
 // myFunction();
 
+import { perfil } from './componentes/Perfil/perfilIndex.js';
 import { Register } from './componentes/Registro/registroindex.js';
 
 const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Register,
+  '/profile': perfil,
 };
 
 const componente = routes[window.location.pathname];
 rootDiv.appendChild(componente());
+
+// export const onNavigate = (pathname) => {
+//   window.history.pushState(
+//     {},
+//     pathname,
+//     window.location.origin + pathname 
+//   )
+//   rootDiv.innerHTML = routes[pathname]
+// }
 // routes[window.location.pathname].loadEvents()
 
 // const registroButton = document.getElementById('home');

@@ -1,5 +1,6 @@
 import { registerClick, googleClick } from './registroevents.js';
 import { validar } from './registroValidar';
+//import { onNavigate } from '../../main.js';
 
 export const Register = () => {
   const registro = document.createElement('section');
@@ -141,6 +142,7 @@ export const Register = () => {
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
     registerClick(correoInput, contraseñaInput);
+   //onNavigate('/profile');
     //datosUsuario(userInput, correoInput, contraseñaInput);
     // inputForm();
   });

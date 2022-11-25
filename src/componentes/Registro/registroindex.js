@@ -1,6 +1,7 @@
-import { registerClick, googleClick } from './registroevents.js';
+import { registerClick, googleClick, datosUsuario } from './registroevents.js';
 import { validar } from './registroValidar';
-//import { onNavigate } from '../../main.js';
+// eslint-disable-next-line import/no-cycle
+import { onNavigate } from '../../main.js';
 
 export const Register = () => {
   const registro = document.createElement('section');
@@ -13,7 +14,7 @@ export const Register = () => {
   title.innerText = '<Laboratorians Music>';
 
   const welcome = document.createElement('p');
-  welcome.innerText = 'Inicia sesión para compartir música con la comunidad de Laboratoria.';
+  welcome.innerText = 'Registrate para compartir música con la comunidad de Laboratoria.';
 
   const userDiv = document.createElement('div');
   const user = document.createElement('label');
@@ -21,6 +22,8 @@ export const Register = () => {
 
   const userInput = document.createElement('input');
   userInput.setAttribute('name', 'usuario');
+  userInput.setAttribute('required', '');
+  userInput.ariaRequired = 'rellena este campo';
   userInput.placeholder = 'Ingresa tu nombre';
   userInput.id = 'userInput';
   userInput.setAttribute('class', 'inputForm');
@@ -36,6 +39,7 @@ export const Register = () => {
   const correoInput = document.createElement('input');
   correoInput.setAttribute('class', 'inputForm');
   correoInput.setAttribute('name', 'correo1');
+  correoInput.setAttribute('required', '');
   correoInput.placeholder = 'Ingresa tu correo';
   correoInput.id = 'correoInput';
   correoInput.setAttribute('type', 'email');
@@ -47,6 +51,7 @@ export const Register = () => {
   const correoInput2 = document.createElement('input');
   correoInput2.setAttribute('class', 'inputForm');
   correoInput2.setAttribute('name', 'correo2');
+  correoInput2.setAttribute('required', '');
   correoInput2.placeholder = 'Válida tu correo';
   correoInput2.id = 'correoInput2';
   correoInput2.setAttribute('type', 'email');
@@ -61,6 +66,7 @@ export const Register = () => {
 
   const contraseñaInput = document.createElement('input');
   contraseñaInput.setAttribute('class', 'inputForm');
+  contraseñaInput.setAttribute('required', '');
   contraseñaInput.placeholder = 'Ingresa tu contraseña';
   contraseñaInput.id = 'contraseñaInput';
   contraseñaInput.setAttribute('type', 'password');
@@ -71,6 +77,7 @@ export const Register = () => {
   errorContraseña.setAttribute('id', 'message-error-contraseña-1');
 
   const contraseñaInput2 = document.createElement('input');
+  contraseñaInput2.setAttribute('required', '');
   contraseñaInput2.setAttribute('class', 'inputForm');
   contraseñaInput2.setAttribute('name', 'contraseña2');
   contraseñaInput2.placeholder = 'Válida tu contraseña';
@@ -124,10 +131,6 @@ export const Register = () => {
   registro.appendChild(welcome);
   registro.appendChild(Home);
 
-  //   Home.addEventListener('submit', (e) => {
-  //     e.preventDefault();
-  //   });
-
   const inputs = Home.querySelectorAll('input');
   inputs.forEach((input, index) => {
     const messageError = Home.querySelectorAll('h6')[index].id;
@@ -142,13 +145,15 @@ export const Register = () => {
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
     registerClick(correoInput, contraseñaInput);
-   //onNavigate('/profile');
-    //datosUsuario(userInput, correoInput, contraseñaInput);
+    datosUsuario(userInput, correoInput, contraseñaInput);
+    onNavigate('/profile');
     // inputForm();
   });
 
-  buttonGoogle.addEventListener('click', () => googleClick());
-
+  buttonGoogle.addEventListener('click', () => {
+    onNavigate('/profile');
+    googleClick();
+  });
   // console.log(inputs);
   // console.log(inputForm);
 

@@ -5,15 +5,23 @@ const expresiones = {
   password: /^[a-zA-Z0-9\_\-]{6,16}$/,
 };
 
+const campos = {
+  userInput: false,
+  correoInput: false,
+  contraseñaInput: false,
+};
+
 export const validarCampo = (expresion, input, campo, messageId) => {
   if (expresion.test(input)) {
     document.getElementById(`${campo}`).classList.add('check');
     document.getElementById(`${campo}`).classList.remove('wrong');
     document.querySelector(`#${messageId}`).classList.remove('activo');
+    campos[campo] = true;
   } else {
     document.getElementById(`${campo}`).classList.remove('check');
     document.getElementById(`${campo}`).classList.add('wrong');
     document.querySelector(`#${messageId}`).classList.add('activo');
+    campos[campo] = false;
   }
 };
 
@@ -24,10 +32,12 @@ export const validarIguales = (input, input2, messageId) => {
     document.getElementById(`${input2}`).classList.add('check');
     document.getElementById(`${input2}`).classList.remove('wrong');
     document.querySelector(`#${messageId}`).classList.remove('activo');
+    campos[input] = true;
   } else {
     document.getElementById(`${input2}`).classList.remove('check');
     document.getElementById(`${input2}`).classList.add('wrong');
     document.querySelector(`#${messageId}`).classList.add('activo');
+    campos[input] = false;
   }
 };
 
@@ -62,6 +72,7 @@ export const validar = (nombre, valor, elementId) => {
     case 'contraseña2':
       validarIguales('contraseñaInput', 'contraseñaInput2', elementId);
       break;
+    // eslint-disable-next-line no-empty
     default: {}
   }
 };

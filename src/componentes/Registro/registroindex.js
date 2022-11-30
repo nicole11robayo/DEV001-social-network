@@ -1,4 +1,4 @@
-import { registerClick, googleClick, datosUsuario } from './registroevents.js';
+import { registerClick, googleClick } from './registroevents.js';
 import { validar } from './registroValidar';
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../../main.js';
@@ -144,9 +144,10 @@ export const Register = () => {
 
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
-    registerClick(correoInput, contraseñaInput);
-    datosUsuario(userInput, correoInput, contraseñaInput);
-    onNavigate('/profile');
+    registerClick(correoInput.value, contraseñaInput.value, userInput.value, onNavigate('/profile'));
+    //verificarEmail();
+    //datosUsuario(userInput.value, correoInput.value, contraseñaInput.value);
+    //onNavigate('/profile');
     // inputForm();
   });
 

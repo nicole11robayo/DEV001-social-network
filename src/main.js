@@ -5,6 +5,7 @@
 // myFunction();
 
 import { perfil } from './componentes/Perfil/perfilIndex.js';
+//import { datosUsuario } from './componentes/Registro/registroevents.js';
 // eslint-disable-next-line import/no-cycle
 import { Register } from './componentes/Registro/registroindex.js';
 
@@ -29,3 +30,12 @@ export const onNavigate = (pathname) => {
   }
   rootDiv.appendChild(routes[pathname]());
 };
+
+window.onpopstate = () => {
+  while (rootDiv.firstChild) {
+    rootDiv.removeChild(rootDiv.firstChild);
+  }
+  rootDiv.appendChild(routes[window.location.pathname]());
+};
+
+//window.datosUsuario = datosUsuario;

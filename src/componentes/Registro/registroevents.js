@@ -1,39 +1,43 @@
 /* eslint-disable no-console */
 import {
-  createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification, updateProfile,
-  onAuthStateChanged, signOut
+  createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification,
+  onAuthStateChanged, signOut,
 } from 'firebase/auth';
 import { setDoc, collection } from 'firebase/firestore';
 import { auth, database } from '../../firebase.js';
-import { onNavigate } from '../../main.js';
 // eslint-disable-next-line import/no-cycle
 import { perfil } from '../Perfil/perfilIndex.js';
 
-const verificar = auth.onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user);
-    const emailVerified = user.emailVerified;
-    console.log(emailVerified);
-    if (emailVerified === false) {
-      alert('No se ha verificado tu correo');
-      console.log('Email No Verificado');
-    } else if (emailVerified === true) {
-      console.log('Email Verificado');
-      perfil();
-    }
-  }
-});
+// const verificar = auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log(user);
+//     const emailVerified = user.emailVerified;
+//     console.log(emailVerified);
+//     if (emailVerified === false) {
+//       alert('No se ha verificado tu correo');
+//       console.log('Email No Verificado');
+//     } else if (emailVerified === true) {
+//       console.log('Email Verificado');
+//       perfil();
+//     }
+//   }
+// });
 
 export const logOut = () => {
   signOut(auth).then(() => {
     console.log('cerro sesión');
   }).catch((error) => {
+    console.log(error);
     // An error happened.
   });
 };
 // import { Register } from '/componentes/Registro/registroindex.js';
 
 // const registroButton = document.getElementById('home');np
+
+/**
+ * TODO: investigate about JSDOC
+ */
 export const registerClick = (email, contraseña, usuario) => {
   // e.preventDefa   ult();
 
@@ -47,20 +51,14 @@ export const registerClick = (email, contraseña, usuario) => {
         user: usuario,
         correo: email,
         password: contraseña,
-      }).then((docRef) => {
-        console.log(docRef);
-      }).catch(() => {
-      });
-      onAuthStateChanged()
-        .then(() => {
-          verificar();
-          return userCredentials.user;
+      })
+        .then((docRef) => {
+          console.log(docRef);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      console.log(auth.currentUser);
-      console.log(userCredentials.user.uid);
-    })
-
-    .catch((error) => console.log(error));
+    });
 };
 
 export const googleClick = () => {

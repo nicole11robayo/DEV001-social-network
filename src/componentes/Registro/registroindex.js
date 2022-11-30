@@ -144,10 +144,12 @@ export const Register = () => {
 
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
-    registerClick(correoInput.value, contraseñaInput.value, userInput.value, onNavigate('/profile'));
+
+    //TODO: antes de llamar a registerClick, deben validar los inputs
+
+    registerClick(correoInput.value, contraseñaInput.value, userInput.value);
     //verificarEmail();
     //datosUsuario(userInput.value, correoInput.value, contraseñaInput.value);
-    //onNavigate('/profile');
     // inputForm();
   });
 

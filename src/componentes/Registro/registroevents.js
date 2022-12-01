@@ -3,10 +3,8 @@ import {
   createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification,
   onAuthStateChanged, signOut,
 } from 'firebase/auth';
-import { setDoc, collection } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { auth, database } from '../../firebase.js';
-// eslint-disable-next-line import/no-cycle
-import { perfil } from '../Perfil/perfilIndex.js';
 
 // const verificar = auth.onAuthStateChanged((user) => {
 //   if (user) {
@@ -45,19 +43,24 @@ export const registerClick = (email, contraseña, usuario) => {
 
   createUserWithEmailAndPassword(auth, email, contraseña)
     .then((userCredentials) => {
+      alert('Te hemos enviado un correo de verificación');
       sendEmailVerification(auth.currentUser);
-      const user2 = userCredentials.user.uid;
-      setDoc(collection(database, 'user', user2), {
-        user: usuario,
-        correo: email,
-        password: contraseña,
-      })
-        .then((docRef) => {
-          console.log(docRef);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log(auth.currentUser);
+      console.log(auth.currentUser.emailVerified);
+      // const user2 = userCredentials.user.uid;
+      // addDoc(collection(database, 'users'), {
+      //   user: usuario,
+      //   correo: email,
+      //   password: contraseña,
+      // })
+      //   .then((docRef) => {
+      //     console.log(docRef);
+      //     console.log(docRef.id);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+    return userCredentials.user;
     });
 };
 
@@ -70,18 +73,17 @@ export const googleClick = () => {
     })
     .catch((error) => console.log(error));
 };
-// export const datosUsuario = (usuario, email, contraseña) => {
-//   const user2 = auth.currentUser;
-//   console.log(auth.user);
-//   setDoc(collection(database, 'user', user2.uid), {
-//     user: usuario,
-//     correo: email,
-//     password: contraseña,
-//   }).then((docRef) => {
-//     console.log(docRef);
-//   }).catch(() => {
-//   });
 
+export const datosUsuario = (usuario, email, contraseña) => {
+  addDoc(collection(database, 'users'), {
+    user: usuario,
+    correo: email,
+    password: contraseña,
+  }).then((docRef) => {
+    console.log(docRef);
+  }).catch(() => {
+  });
+};
 //   console.log(usuario, email, contraseña);
 // console.log('Document written with ID: ', docRef.id);//
 // export const google = async () => {

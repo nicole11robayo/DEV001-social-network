@@ -1,9 +1,8 @@
 import { registerClick, googleClick } from './registroevents.js';
 import { validar } from './registroValidar';
 // eslint-disable-next-line import/no-cycle
-import { onNavigate } from '../../main.js';
 
-export const Register = () => {
+export const Register = (onNavigate) => {
   const registro = document.createElement('section');
   registro.setAttribute('id', 'registro');
 
@@ -12,6 +11,7 @@ export const Register = () => {
 
   const title = document.createElement('h1');
   title.innerText = '<Laboratorians Music>';
+  title.id = 'title';
 
   const welcome = document.createElement('p');
   welcome.innerText = 'Registrate para compartir música con la comunidad de Laboratoria.';
@@ -148,17 +148,20 @@ export const Register = () => {
     //TODO: antes de llamar a registerClick, deben validar los inputs
 
     registerClick(correoInput.value, contraseñaInput.value, userInput.value);
+    onNavigate('/login');
     //verificarEmail();
     //datosUsuario(userInput.value, correoInput.value, contraseñaInput.value);
     // inputForm();
   });
 
   buttonGoogle.addEventListener('click', () => {
-    onNavigate('/profile');
+    onNavigate('/login');
     googleClick();
   });
   // console.log(inputs);
   // console.log(inputForm);
-
   return registro;
 };
+
+const title1 = document.getElementById('title');
+console.log(title1);

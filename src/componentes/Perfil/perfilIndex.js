@@ -1,14 +1,28 @@
-// eslint-disable-next-line import/no-cycle
-import { onNavigate } from '../../main';
 import { logOut } from '../Registro/registroevents';
 
-export const perfil = () => {
+const correo = document.getElementById('title');
+console.log(correo);
+
+export const perfil = (onNavigate) => {
   const registroPerfil = document.createElement('div');
   registroPerfil.className = 'registroPerfil';
 
   const logo = document.createElement('header');
   logo.setAttribute('id', 'logo');
   logo.innerText = '<LM>';
+
+  const containerImage = document.createElement('div');
+  containerImage.className = 'containerImage';
+
+  const imageOne = document.createElement('img');
+  imageOne.src = '../Image/mayorque.png';
+
+  const inputImage = document.createElement('input');
+  inputImage.className = 'inputImage';
+  inputImage.setAttribute('type', 'file');
+
+  const imageTwo = document.createElement('img');
+  imageTwo.src = '../Image/menorque.png';
 
   const divInicio = document.createElement('div');
 
@@ -17,7 +31,7 @@ export const perfil = () => {
   const nombreUsuario = document.createElement('p');
   nombreUsuario.innerText = '<Usuario> <Usuario>';
   const correoUsuario = document.createElement('p');
-  correoUsuario.innerText = 'example@example.com';
+  correoUsuario.innerText = correo;
   const continuar = document.createElement('p');
   continuar.innerText = 'Continua con tu registro:';
 
@@ -38,6 +52,10 @@ export const perfil = () => {
   const buttonMuro = document.createElement('button');
   buttonMuro.innerText = 'Finalizar Registro';
 
+  containerImage.appendChild(imageOne);
+  containerImage.appendChild(inputImage);
+  containerImage.appendChild(imageTwo);
+
   divInicio.appendChild(saludo);
   divInicio.appendChild(nombreUsuario);
   divInicio.appendChild(correoUsuario);
@@ -54,6 +72,7 @@ export const perfil = () => {
   registerFinish.appendChild(buttonMuro);
 
   registroPerfil.appendChild(logo);
+  registroPerfil.appendChild(containerImage);
   registroPerfil.appendChild(divInicio);
   registroPerfil.appendChild(registerFinish);
 

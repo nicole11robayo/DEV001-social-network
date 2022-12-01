@@ -5,19 +5,12 @@
 // myFunction();
 
 import { perfil } from './componentes/Perfil/perfilIndex.js';
-//import { datosUsuario } from './componentes/Registro/registroevents.js';
-// eslint-disable-next-line import/no-cycle
 import { Register } from './componentes/Registro/registroindex.js';
+import { Login } from './componentes/login/loginIndex.js';
 
 const rootDiv = document.getElementById('root');
 
-const routes = {
-  '/': Register,
-  '/profile': perfil,
-};
-
-const componente = routes[window.location.pathname];
-rootDiv.appendChild(componente());
+let routes = {};
 
 export const onNavigate = (pathname) => {
   window.history.pushState(
@@ -28,8 +21,17 @@ export const onNavigate = (pathname) => {
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
-  rootDiv.appendChild(routes[pathname]());
+  rootDiv.appendChild(routes[pathname]);
 };
+
+routes = {
+  '/': Register(onNavigate),
+  '/profile': perfil(onNavigate),
+  '/login': Login(onNavigate),
+};
+
+const componente = () => routes[window.location.pathname];
+rootDiv.appendChild(componente());
 
 window.onpopstate = () => {
   while (rootDiv.firstChild) {
@@ -37,5 +39,3 @@ window.onpopstate = () => {
   }
   rootDiv.appendChild(routes[window.location.pathname]());
 };
-
-//window.datosUsuario = datosUsuario;

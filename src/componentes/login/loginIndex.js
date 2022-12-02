@@ -75,7 +75,8 @@ export const Login = (onNavigate) => {
 
     // TODO: antes de llamar a registerClick, deben validar los inputs
     loginEmailAndPassword(correoInput.value, contraseñaInput.value)
-      .then(() => {
+      .then((userCrendentials) => {
+        console.log(userCrendentials.user);
         onNavigate('/muro');
       })
       .catch((error) => {

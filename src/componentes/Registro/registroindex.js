@@ -14,7 +14,7 @@ export const Register = (onNavigate) => {
   title.id = 'title';
 
   const welcome = document.createElement('p');
-  welcome.innerText = 'Registrate para compartir música con la comunidad de Laboratoria.';
+  welcome.innerText = 'Regístrate para compartir música con la comunidad de Laboratoria.';
 
   const userDiv = document.createElement('div');
   const user = document.createElement('label');

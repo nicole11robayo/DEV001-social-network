@@ -4,7 +4,9 @@ import {
   getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword,
   GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import {
+  getFirestore, addDoc, collection, doc, setDoc,
+} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -43,7 +45,7 @@ export const googleRegister = () => {
 };
 
 export const newUserCollection = (userID, usuario, email, contraseña) => {
-  addDoc(collection(database, 'users'), {
+  setDoc(doc(database, 'users', userID), {
     user: usuario,
     correo: email,
     password: contraseña,
@@ -56,3 +58,11 @@ export const newPostCollection = (post) => {
     post,
   });
 };
+
+// export const catchData = getDocs(collection(database, 'users'));
+// catchData.forEach((doc) => {
+//   console.log(doc.id, doc);
+//   return doc;
+// });
+
+// doc.data() is never undefined for query doc snapshots

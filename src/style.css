@@ -85,3 +85,7 @@ button img {
 .error.activo {
   display: block;
 }
+
+.imagenMayor{
+  width: 32px;
+}

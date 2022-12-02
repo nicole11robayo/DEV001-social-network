@@ -1,4 +1,4 @@
-import { loginClick, googleClick } from './loginEvents';
+import { loginEmailAndPassword } from '../../firebase';
 
 export const Login = (onNavigate) => {
   const login = document.createElement('section');
@@ -74,16 +74,31 @@ export const Login = (onNavigate) => {
     e.preventDefault();
 
     // TODO: antes de llamar a registerClick, deben validar los inputs
-    loginClick(correoInput.value, contraseñaInput.value);
-    onNavigate('/profile');
+    loginEmailAndPassword(correoInput.value, contraseñaInput.value)
+      .then(() => {
+        onNavigate('/muro');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Contraseña incorrecta, intentalo de nuevo');
+        } else if (errorCode === 'auth/user-not-found') {
+          alert('Por favor registrate');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
     // verificarEmail();
     // datosUsuario(userInput.value, correoInput.value, contraseñaInput.value);
     // inputForm();
   });
 
   buttonGoogle.addEventListener('click', () => {
-    onNavigate('/profile');
-    googleClick();
+    // onNavigate('/profile');
+    // googleClick();
   });
   // console.log(inputs);
   // console.log(inputForm);

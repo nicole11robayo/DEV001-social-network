@@ -1,4 +1,4 @@
-import { logOut } from '../Registro/registroevents';
+import { logOut } from '../../firebase';
 
 const correo = document.getElementById('title');
 console.log(correo);

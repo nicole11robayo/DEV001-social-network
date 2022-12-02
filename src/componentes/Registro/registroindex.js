@@ -1,4 +1,4 @@
-import { registerClick, googleClick } from './registroevents.js';
+import { googleRegister, newUserCollection, registerEmailAndPassword } from '../../firebase';
 import { validar } from './registroValidar';
 // eslint-disable-next-line import/no-cycle
 
@@ -145,23 +145,35 @@ export const Register = (onNavigate) => {
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    //TODO: antes de llamar a registerClick, deben validar los inputs
+    // TODO: antes de llamar a registerClick, deben validar los inputs
 
-    registerClick(correoInput.value, contraseñaInput.value, userInput.value);
+    registerEmailAndPassword(correoInput.value, contraseñaInput.value)
+      .then((UserCredential) => {
+        console.log(UserCredential.user.uid);
+        const userID = UserCredential.user.uid;
+        onNavigate('/login');
+        newUserCollection(userID, userInput.value, correoInput.value, contraseñaInput.value);
+      });
+    /*
+    .then(() => onNavigate('/login'));
+    alert('Te hemos enviado un correo de verificación');
+    sendEmailVerification(auth.currentUser);
     onNavigate('/login');
-    //verificarEmail();
-    //datosUsuario(userInput.value, correoInput.value, contraseñaInput.value);
-    // inputForm();
+    verificarEmail();
+    newUserCollection(userInput.value, correoInput.value, contraseñaInput.value);
+    inputForm();
+    */
   });
 
   buttonGoogle.addEventListener('click', () => {
     onNavigate('/login');
-    googleClick();
+    googleRegister()
+      .then((credenciales) => {
+        console.log(credenciales);
+      })
+      .catch((error) => console.log(error));
   });
   // console.log(inputs);
   // console.log(inputForm);
   return registro;
 };
-
-const title1 = document.getElementById('title');
-console.log(title1);

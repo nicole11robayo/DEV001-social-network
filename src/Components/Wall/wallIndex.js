@@ -1,5 +1,5 @@
 import {
-  newPostCollection, user, getPosts,
+  newPostCollection, user, onGetPosts, onGetUsers, getUserLog,
 } from '../../firebase';
 
 export const Wall = () => {
@@ -49,6 +49,9 @@ export const Wall = () => {
   allPublications.className = 'allPublications';
   allPublications.innerText = 'Todas las publicaciones';
 
+  const showPosts = document.createElement('div');
+  showPosts.className = 'showPosts';
+
   userPlace.appendChild(imageGreaterThan);
   userPlace.appendChild(nameUser);
   userPlace.appendChild(imageLessThan);
@@ -63,16 +66,31 @@ export const Wall = () => {
   wallDiv.appendChild(imageGif);
   wallDiv.appendChild(formWall);
   wallDiv.appendChild(allPublications);
+  wallDiv.appendChild(showPosts);
 
   buttonSubmitPost.addEventListener('click', async (e) => {
     e.preventDefault();
-    user();
-    newPostCollection(post.value);
+    console.log(user());
+    const usersUid = localStorage.getItem('uidUsuario');
+    onGetUsers((users) => {
+      console.log(users);
+      users.forEach((userss) => {
+        console.log(users);
+        if (userss.data().id === usersUid) {
+          console.log(getUserLog(usersUid));
+        }
+        console.log(userss.data().correo);
+      });
+    });
+    if (post.value !== '') {
+      newPostCollection(post.value);
+    }
   });
 
-  window.addEventListener('DOMContentLoaded', async () => {
-    const querySnapshot = await getPosts();
+  onGetPosts((querySnapshot) => {
     console.log(querySnapshot);
+    post.value = '';
+    showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const posts = doc.data();
       console.log(doc.data());
@@ -104,7 +122,7 @@ export const Wall = () => {
       savePosts.appendChild(containerImageAndUserPosts);
       savePosts.appendChild(messagePosts);
       savePosts.appendChild(imageLikePosts);
-      wallDiv.appendChild(savePosts);
+      showPosts.appendChild(savePosts);
     });
   });
   return wallDiv;

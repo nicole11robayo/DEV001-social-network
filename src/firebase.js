@@ -5,8 +5,9 @@ import {
   GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import {
-  getFirestore, addDoc, collection, doc, setDoc, getDocs, onSnapshot
+  getFirestore, addDoc, collection, doc, setDoc, getDocs, onSnapshot, getDoc, where, query,
 } from 'firebase/firestore';
+import { async } from 'regenerator-runtime';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,13 +26,22 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
+export const database = getFirestore(app);
+
 // export const user = auth.onAuthStateChanged;
 
 export const user = () => {
   auth.onAuthStateChanged((us) => {
     if (us) {
-      // User is signed in.
+      getDoc(doc(database, 'users', us.uid))
+        .then((users) => {
+          console.log(users.data().user);
+          console.log(localStorage.setItem('uidUsuario', us.uid));
+          return users.data().user;
+        });
       console.log('state = definitely signed in');
+      console.log(us.email);
+      console.log(us.uid);
     } else {
       // User is signed out.
       console.log('state = definitely signed out');
@@ -39,7 +49,6 @@ export const user = () => {
   });
 };
 
-export const database = getFirestore(app);
 
 // eslint-disable-next-line arrow-body-style
 export const loginEmailAndPassword = (email, password) => {
@@ -68,7 +77,7 @@ export const newUserCollection = (userID, usuario, email, contraseña) => {
 };
 
 export const newPostCollection = (post) => {
-  addDoc(collection(database, 'Posts'), {
+  addDoc(collection(database, 'posts'), {
     post,
   });
   //post, orderBy('name', 'desc');
@@ -76,10 +85,11 @@ export const newPostCollection = (post) => {
 };
 
 //database.collection('posts').orderBy('fecha', 'desc');
+export const onGetUsers = (callback) => onSnapshot(collection(database, 'users'), callback);
 
-export const getPosts = () => getDocs(collection(database, 'Posts'));
+export const onGetPosts = (callback) => onSnapshot(collection(database, 'posts'), callback);
 
-export const onGetPosts = (callback) => onSnapshot(collection(database, 'Posts'), callback);
+export const getUserLog = (uid) => getDoc(doc(database, 'users', uid)).then(() => console.log('hola'));
 // export const catchData = getDocs(collection(database, 'users'));
 // catchData.forEach((doc) => {
 //   console.log(doc.id, doc);

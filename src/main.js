@@ -4,10 +4,10 @@
 
 // myFunction();
 
-import { perfil } from './componentes/Perfil/perfilIndex.js';
-import { Register } from './componentes/Registro/registroindex.js';
-import { Login } from './componentes/login/loginIndex.js';
-import { Wall } from './componentes/Muro/muroIndex.js';
+import { Profile } from './Components/Profile/profileIndex.js';
+import { Register } from './Components/Register/registerIndex.js';
+import { Login } from './Components/Login/loginIndex.js';
+import { Wall } from './Components/Wall/wallIndex.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -27,9 +27,9 @@ export const onNavigate = (pathname) => {
 
 routes = {
   '/': Register(onNavigate),
-  '/profile': perfil(onNavigate),
+  '/profile': Profile(onNavigate),
   '/login': Login(onNavigate),
-  '/muro': Wall(),
+  '/muro': Wall(onNavigate),
 };
 
 const componente = () => routes[window.location.pathname];

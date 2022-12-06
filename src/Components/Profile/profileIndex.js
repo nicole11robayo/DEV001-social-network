@@ -1,11 +1,8 @@
 import { logOut } from '../../firebase';
 
-const correo = document.getElementById('title');
-console.log(correo);
-
-export const perfil = (onNavigate) => {
-  const registroPerfil = document.createElement('div');
-  registroPerfil.className = 'registroPerfil';
+export const Profile = (onNavigate) => {
+  const registerProfile = document.createElement('div');
+  registerProfile.className = 'registerProfile';
 
   const logo = document.createElement('header');
   logo.setAttribute('id', 'logo');
@@ -24,19 +21,19 @@ export const perfil = (onNavigate) => {
   const imageTwo = document.createElement('img');
   imageTwo.src = '../Image/menorque.png';
 
-  const divInicio = document.createElement('div');
+  const divFirst = document.createElement('div');
 
-  const saludo = document.createElement('p');
-  saludo.innerText = 'Hola,';
-  const nombreUsuario = document.createElement('p');
-  nombreUsuario.innerText = '<Usuario> <Usuario>';
-  const correoUsuario = document.createElement('p');
-  correoUsuario.innerText = correo;
-  const continuar = document.createElement('p');
-  continuar.innerText = 'Continua con tu registro:';
+  const hello = document.createElement('p');
+  hello.innerText = 'Hola,';
+  const nameUser = document.createElement('p');
+  nameUser.innerText = '<Usuario> <Usuario>';
+  const emailUser = document.createElement('p');
+  emailUser.innerText = '';
+  const continueRegister = document.createElement('p');
+  continueRegister.innerText = 'Continua con tu registro:';
 
   const registerFinish = document.createElement('form');
-  registerFinish.className = 'registroFinal';
+  registerFinish.className = 'registerFinish';
   const userNameDiv = document.createElement('div');
   const userName = document.createElement('label');
   userName.innerText = 'UserName';
@@ -49,17 +46,17 @@ export const perfil = (onNavigate) => {
   const userDescriptionInput = document.createElement('textarea');
   userDescriptionInput.placeholder = 'Me gusta el rock y...';
 
-  const buttonMuro = document.createElement('button');
-  buttonMuro.innerText = 'Finalizar Registro';
+  const buttonWall = document.createElement('button');
+  buttonWall.innerText = 'Finalizar Registro';
 
   containerImage.appendChild(imageOne);
   containerImage.appendChild(inputImage);
   containerImage.appendChild(imageTwo);
 
-  divInicio.appendChild(saludo);
-  divInicio.appendChild(nombreUsuario);
-  divInicio.appendChild(correoUsuario);
-  divInicio.appendChild(continuar);
+  divFirst.appendChild(hello);
+  divFirst.appendChild(nameUser);
+  divFirst.appendChild(emailUser);
+  divFirst.appendChild(continueRegister);
 
   userNameDiv.appendChild(userName);
   userNameDiv.appendChild(userNameInput);
@@ -69,16 +66,16 @@ export const perfil = (onNavigate) => {
 
   registerFinish.appendChild(userNameDiv);
   registerFinish.appendChild(userDescriptionDiv);
-  registerFinish.appendChild(buttonMuro);
+  registerFinish.appendChild(buttonWall);
 
-  registroPerfil.appendChild(logo);
-  registroPerfil.appendChild(containerImage);
-  registroPerfil.appendChild(divInicio);
-  registroPerfil.appendChild(registerFinish);
+  registerProfile.appendChild(logo);
+  registerProfile.appendChild(containerImage);
+  registerProfile.appendChild(divFirst);
+  registerProfile.appendChild(registerFinish);
 
-  buttonMuro.addEventListener('click', () => {
+  buttonWall.addEventListener('click', () => {
     logOut();
     onNavigate('/');
   });
-  return registroPerfil;
+  return registerProfile;
 };

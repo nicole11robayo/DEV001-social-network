@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import {
-  getFirestore, addDoc, collection, doc, setDoc,
+  getFirestore, addDoc, collection, doc, setDoc, getDocs, onSnapshot
 } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,6 +24,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+// export const user = auth.onAuthStateChanged;
+
+export const user = () => {
+  auth.onAuthStateChanged((us) => {
+    if (us) {
+      // User is signed in.
+      console.log('state = definitely signed in');
+    } else {
+      // User is signed out.
+      console.log('state = definitely signed out');
+    }
+  });
+};
 
 export const database = getFirestore(app);
 
@@ -57,8 +71,15 @@ export const newPostCollection = (post) => {
   addDoc(collection(database, 'Posts'), {
     post,
   });
+  //post, orderBy('name', 'desc');
+  //post.orderBy('fecha', 'desc');
 };
 
+//database.collection('posts').orderBy('fecha', 'desc');
+
+export const getPosts = () => getDocs(collection(database, 'Posts'));
+
+export const onGetPosts = (callback) => onSnapshot(collection(database, 'Posts'), callback);
 // export const catchData = getDocs(collection(database, 'users'));
 // catchData.forEach((doc) => {
 //   console.log(doc.id, doc);

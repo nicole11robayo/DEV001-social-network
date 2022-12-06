@@ -18,7 +18,7 @@ body {
 }
 
 
-#home {
+#home, .registerFinish, .formWall, .savePosts {
     display: flex;
     flex-direction: column;
     padding: 10px 30px;
@@ -34,20 +34,24 @@ body {
     flex-direction: column;
 }
 
-#registro h1 {
+#register h1 {
   font-size: 48px;
   text-align: center;
   font-family: 'Inter', sans-serif;
   margin-bottom: 10px;
 }
 
-#registro p {
+#register p, .registerProfile p {
   text-align: center;
   font-size: 20px;
   margin: 0 33px 20px 33px;
 }
 
-#home button {
+.registerProfile p {
+  font-weight: bold;
+}
+
+#home button, .registerProfile button, .buttonSubmitPost {
   background-color: black;
   color: #F5F5F5;
   border-radius: 10px;
@@ -57,7 +61,7 @@ body {
   text-align: center;
 }
 
-#home label {
+#home label, .registerProfile label {
   margin: 8px 0 5px 0;
   font-size: 18px;
 }
@@ -89,3 +93,86 @@ button img {
 .imagenMayor{
   width: 32px;
 }
+
+.registerProfile input, .registerProfile textarea, .post {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 0;
+  height: 25px;
+  padding-left: 6px;
+  font-size: 18px;
+}
+
+.userPlace {
+  display: flex;
+  justify-content: end;
+}
+
+.imageGif {
+  display: block;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.textStart {
+  text-align: center;
+  font-weight: 400;
+}
+
+.formWall p {
+  font-weight: 400;
+}
+
+.registerProfile textarea {
+  height: 100px;
+}
+
+.post {
+  height: 150px;
+}
+
+.savePosts {
+  margin-top: 20px;
+}
+
+.containerImageAndUserPosts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.allPublications {
+  font-size: 23px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.savePosts img {
+  width: 30px;
+}
+
+.imageLikePosts {
+  display: block;
+  margin-left: auto;
+}
+
+.containerImage img {
+  width: 120px;
+}
+
+.inputImage {
+  width: 100px;
+}
+
+.containerImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+

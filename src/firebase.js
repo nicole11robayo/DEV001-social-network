@@ -5,9 +5,9 @@ import {
   GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import {
-  getFirestore, addDoc, collection, doc, setDoc, getDocs, onSnapshot, getDoc, where, query,
+  getFirestore, addDoc, collection, doc, setDoc, onSnapshot, getDoc,
 } from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,22 +33,14 @@ export const database = getFirestore(app);
 export const user = () => {
   auth.onAuthStateChanged((us) => {
     if (us) {
-      getDoc(doc(database, 'users', us.uid))
-        .then((users) => {
-          console.log(users.data().user);
-          console.log(localStorage.setItem('uidUsuario', us.uid));
-          return users.data().user;
-        });
+      localStorage.setItem('uidUsuario', us.uid);
       console.log('state = definitely signed in');
-      console.log(us.email);
-      console.log(us.uid);
     } else {
       // User is signed out.
       console.log('state = definitely signed out');
     }
   });
 };
-
 
 // eslint-disable-next-line arrow-body-style
 export const loginEmailAndPassword = (email, password) => {
@@ -80,16 +72,13 @@ export const newPostCollection = (post) => {
   addDoc(collection(database, 'posts'), {
     post,
   });
-  //post, orderBy('name', 'desc');
-  //post.orderBy('fecha', 'desc');
 };
 
-//database.collection('posts').orderBy('fecha', 'desc');
 export const onGetUsers = (callback) => onSnapshot(collection(database, 'users'), callback);
 
 export const onGetPosts = (callback) => onSnapshot(collection(database, 'posts'), callback);
 
-export const getUserLog = (uid) => getDoc(doc(database, 'users', uid)).then(() => console.log('hola'));
+export const getUserLog = (uid) => getDoc(doc(database, 'users', uid));
 // export const catchData = getDocs(collection(database, 'users'));
 // catchData.forEach((doc) => {
 //   console.log(doc.id, doc);

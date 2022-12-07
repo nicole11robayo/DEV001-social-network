@@ -17,7 +17,6 @@ export const Wall = () => {
   imageGreaterThan.className = 'imagenMayor';
 
   const nameUser = document.createElement('h3');
-  nameUser.innerText = 'Usuario';
 
   const imageLessThan = document.createElement('img');
   imageLessThan.src = '../Image/menorque.png';
@@ -68,20 +67,24 @@ export const Wall = () => {
   wallDiv.appendChild(allPublications);
   wallDiv.appendChild(showPosts);
 
+  user();
+  const usersUid = localStorage.getItem('uidUsuario');
+  console.log(usersUid);
+  console.log(localStorage);
+  onGetUsers((users) => {
+    users.forEach((userss) => {
+      if (userss.data().id === usersUid) {
+        getUserLog(usersUid).then((user1) => {
+          nameUser.innerText = user1.data().user;
+          console.log(user1.data());
+          return user1.data();
+        });
+      }
+    });
+  });
+
   buttonSubmitPost.addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log(user());
-    const usersUid = localStorage.getItem('uidUsuario');
-    onGetUsers((users) => {
-      console.log(users);
-      users.forEach((userss) => {
-        console.log(users);
-        if (userss.data().id === usersUid) {
-          console.log(getUserLog(usersUid));
-        }
-        console.log(userss.data().correo);
-      });
-    });
     if (post.value !== '') {
       newPostCollection(post.value);
     }

@@ -75,6 +75,7 @@ export const Profile = (onNavigate) => {
 
   buttonWall.addEventListener('click', () => {
     logOut();
+    localStorage.clear();
     onNavigate('/');
   });
   return registerProfile;

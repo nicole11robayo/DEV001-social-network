@@ -101,7 +101,7 @@ export const Login = (onNavigate) => {
     loginEmailAndPassword(emailInput.value, passwordInput.value)
       .then((userCrendentials) => {
         console.log(userCrendentials.user);
-        onNavigate('/muro');
+        onNavigate('/wall');
       })
       .catch((error) => {
         // Handle Errors here.

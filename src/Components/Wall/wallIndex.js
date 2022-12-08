@@ -1,5 +1,5 @@
 import {
-  newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut,
+  newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut, deletePost, updatePost,
 } from '../../firebase';
 
 export const Wall = (onNavigate) => {
@@ -93,7 +93,7 @@ export const Wall = (onNavigate) => {
   buttonSubmitPost.addEventListener('click', async (e) => {
     e.preventDefault();
     if (post.value !== '') {
-      newPostCollection(post.value, localStorage.getItem('userName'));
+      newPostCollection(post.value, localStorage.getItem('userName'), usersUid);
     }
   });
 
@@ -103,9 +103,14 @@ export const Wall = (onNavigate) => {
     showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const posts = doc.data();
+      console.log(posts);
       const userName = doc.data().name;
       console.log(doc.data().post);
       console.log(doc.data().name);
+      console.log(doc.data().uid);
+      console.log(doc.id);
+      const uidUser = doc.data().uid;
+      const postId = doc.id;
       const savePosts = document.createElement('div');
       savePosts.className = 'savePosts';
       const containerImageAndUserPosts = document.createElement('div');
@@ -120,24 +125,67 @@ export const Wall = (onNavigate) => {
       imageEditPosts.src = '../Image/editar.png';
       const imageDeletePosts = document.createElement('img');
       imageDeletePosts.src = '../Image/trash.png';
+
       const messagePosts = document.createElement('p');
+      messagePosts.innerText = posts.post;
+      messagePosts.setAttribute = ('class', 'messagePosts');
+
+      const editPostDiv = document.createElement('div');
+      editPostDiv.setAttribute('class', 'editPostDiv');
+      const editPost = document.createElement('input');
+      editPost.value = posts.post;
+      const buttonEditPost = document.createElement('button');
+      buttonEditPost.innerText = 'Editar Post';
+
       const imageLikePosts = document.createElement('img');
       imageLikePosts.className = 'imageLikePosts';
       imageLikePosts.src = '../Image/Ilike.png';
-      messagePosts.innerText = posts.post;
+
       containerUserPosts.appendChild(nameUserPosts);
       containerImagePosts.appendChild(imageEditPosts);
       containerImagePosts.appendChild(imageDeletePosts);
+      editPostDiv.appendChild(editPost);
+      editPostDiv.appendChild(buttonEditPost);
       containerImageAndUserPosts.appendChild(containerUserPosts);
       containerImageAndUserPosts.appendChild(containerImagePosts);
       savePosts.appendChild(containerImageAndUserPosts);
       savePosts.appendChild(messagePosts);
+      savePosts.appendChild(editPostDiv);
       savePosts.appendChild(imageLikePosts);
       showPosts.appendChild(savePosts);
+
+      if (usersUid === uidUser) {
+        containerImagePosts.classList.add('show');
+      }
+
+      imageEditPosts.addEventListener('click', () => {
+        editPostDiv.classList.add('show');
+      });
+
+      buttonEditPost.addEventListener('click', () => {
+        console.log(doc.data().post);
+        console.log(editPost.value);
+        console.log(postId);
+        updatePost(postId, editPost.value)
+          .then(() => console.log('tu post fue Editado'))
+          .catch((error) => console.log(error));
+      });
+
+      imageDeletePosts.addEventListener('click', () => {
+        console.log(postId);
+        if (window.confirm('¿Quieres borrar este post?')) {
+          deletePost(postId)
+            .then((user2) => {
+              console.log('tu post fue borrado');
+              return user2;
+            })
+            .catch((error) => console.log(error));
+        }
+      });
     });
   });
 
- closeSesion.addEventListener('click', () => {
+  closeSesion.addEventListener('click', () => {
     logOut();
     localStorage.clear();
     onNavigate('/');

@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider, signInWithPopup,
 } from 'firebase/auth';
 import {
-  getFirestore, addDoc, collection, doc, setDoc, onSnapshot, getDoc,
+  getFirestore, addDoc, collection, doc, setDoc, onSnapshot, getDoc, deleteDoc, updateDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -69,10 +69,11 @@ export const newUserCollection = (userID, usuario, email, contraseña) => {
   });
 };
 
-export const newPostCollection = (post, name) => {
+export const newPostCollection = (post, name, uid) => {
   addDoc(collection(database, 'posts'), {
     post,
     name,
+    uid,
   });
 };
 
@@ -81,6 +82,12 @@ export const onGetUsers = (callback) => onSnapshot(collection(database, 'users')
 export const onGetPosts = (callback) => onSnapshot(collection(database, 'posts'), callback);
 
 export const getUserLog = (uid) => getDoc(doc(database, 'users', uid));
+
+export const deletePost = (uid) => deleteDoc(doc(database, 'posts', uid));
+
+export const updatePost = (uid, newPostEdit) => updateDoc(doc(database, 'posts', uid), {
+  post: newPostEdit,
+});
 // export const catchData = getDocs(collection(database, 'users'));
 // catchData.forEach((doc) => {
 //   console.log(doc.id, doc);

@@ -216,3 +216,17 @@ button img {
   text-align: center;
 }
 
+.editPostDiv {
+  display: none;
+}
+
+.editPostDiv.show {
+  display: block;
+}
+.containerImagePosts{
+  display: none;
+}
+
+.containerImagePosts.show {
+  display: block;
+}

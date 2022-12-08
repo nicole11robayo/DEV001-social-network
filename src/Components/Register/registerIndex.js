@@ -48,21 +48,28 @@ export const Register = (onNavigate) => {
   errorEmail.setAttribute('class', 'error');
   errorEmail.setAttribute('id', 'message-error-mail-1');
 
-  const emailInput2 = document.createElement('input');
-  emailInput2.setAttribute('class', 'inputForm');
-  emailInput2.setAttribute('name', 'email2');
-  emailInput2.setAttribute('required', '');
-  emailInput2.placeholder = 'Válida tu correo';
-  emailInput2.id = 'emailInput2';
-  emailInput2.setAttribute('type', 'email');
-  const errorEmail2 = document.createElement('h6');
-  errorEmail2.innerText = 'Ambos correos deben ser iguales';
-  errorEmail2.setAttribute('class', 'error');
-  errorEmail2.setAttribute('id', 'message-error-mail-2');
+  // const emailInput2 = document.createElement('input');
+  // emailInput2.setAttribute('class', 'inputForm');
+  // emailInput2.setAttribute('name', 'email2');
+  // emailInput2.setAttribute('required', '');
+  // emailInput2.placeholder = 'Válida tu correo';
+  // emailInput2.id = 'emailInput2';
+  // emailInput2.setAttribute('type', 'email');
+  // const errorEmail2 = document.createElement('h6');
+  // errorEmail2.innerText = 'Ambos correos deben ser iguales';
+  // errorEmail2.setAttribute('class', 'error');
+  // errorEmail2.setAttribute('id', 'message-error-mail-2');
 
   const passwordDiv = document.createElement('div');
+  passwordDiv.setAttribute('class', 'passwordDiv');
   const password = document.createElement('label');
   password.innerText = 'Contraseña';
+
+  const divPassword = document.createElement('div');
+  divPassword.setAttribute('class', 'divPassword');
+
+  const divPassword2 = document.createElement('div');
+  divPassword2.setAttribute('class', 'divPassword2');
 
   const passwordInput = document.createElement('input');
   passwordInput.setAttribute('class', 'inputForm');
@@ -88,6 +95,14 @@ export const Register = (onNavigate) => {
   errorPassword2.setAttribute('class', 'error');
   errorPassword2.setAttribute('id', 'message-error-password-2');
 
+  const imageEye = document.createElement('img');
+  imageEye.src = '../Image/eye-solid.svg';
+  imageEye.setAttribute('id', 'imageEye');
+
+  const imageEye2 = document.createElement('img');
+  imageEye2.src = '../Image/eye-solid.svg';
+  imageEye2.setAttribute('id', 'imageEye2');
+
   const buttonRegister = document.createElement('button');
   buttonRegister.innerText = 'Registrarse';
   buttonRegister.id = 'registerButton';
@@ -97,6 +112,16 @@ export const Register = (onNavigate) => {
   image.src = 'https://andigarcia.com/wp-content/uploads/2020/04/Google-Logo-Fondo-negro.jpg';
   buttonGoogle.innerText = 'Ingresa con Google';
   buttonGoogle.setAttribute('id', 'buttonGoogle');
+
+  const divAccount = document.createElement('div');
+  divAccount.className = 'divAccount';
+
+  const haveAccount = document.createElement('h3');
+  haveAccount.innerText = '¿Ya tienes una cuenta?';
+  haveAccount.className = 'haveAccount';
+  const login = document.createElement('h3');
+  login.innerText = 'Inicia sesión';
+  login.className = 'login';
 
   // buttonGoogle.addEventListener('click', async (e) => {
   // try {
@@ -112,20 +137,30 @@ export const Register = (onNavigate) => {
   emailDiv.appendChild(email);
   emailDiv.appendChild(emailInput);
   emailDiv.appendChild(errorEmail);
-  emailDiv.appendChild(emailInput2);
-  emailDiv.appendChild(errorEmail2);
+  // emailDiv.appendChild(emailInput2);
+  // emailDiv.appendChild(errorEmail2);
+
+  divPassword.appendChild(passwordInput);
+  divPassword.appendChild(imageEye);
+
+  divPassword2.appendChild(passwordInput2);
+  divPassword2.appendChild(imageEye2);
 
   passwordDiv.appendChild(password);
-  passwordDiv.appendChild(passwordInput);
+  passwordDiv.appendChild(divPassword);
   passwordDiv.appendChild(errorPassword);
-  passwordDiv.appendChild(passwordInput2);
+  passwordDiv.appendChild(divPassword2);
   passwordDiv.appendChild(errorPassword2);
+
+  divAccount.appendChild(haveAccount);
+  divAccount.appendChild(login);
 
   Home.appendChild(userDiv);
   Home.appendChild(emailDiv);
   Home.appendChild(passwordDiv);
   Home.appendChild(buttonRegister);
   Home.appendChild(buttonGoogle);
+  Home.appendChild(divAccount);
   // Home.appendChild(buttonGoogle);
   register.appendChild(title);
   register.appendChild(welcome);
@@ -165,6 +200,30 @@ export const Register = (onNavigate) => {
     */
   });
 
+  imageEye.addEventListener('click', () => {
+    const passwordType = document.getElementById('passwordInput');
+    const imageOpenEye = document.getElementById('imageEye');
+    if (passwordType.type === 'password') {
+      passwordType.type = 'text';
+      imageOpenEye.src = '../Image/eye-slash-solid.svg';
+    } else {
+      passwordType.type = 'password';
+      imageOpenEye.src = '../Image/eye-solid.svg';
+    }
+  });
+
+  imageEye2.addEventListener('click', () => {
+    const passwordType2 = document.getElementById('passwordInput2');
+    const imageOpenEye = document.getElementById('imageEye2');
+    if (passwordType2.type === 'password') {
+      passwordType2.type = 'text';
+      imageOpenEye.src = '../Image/eye-slash-solid.svg';
+    } else {
+      passwordType2.type = 'password';
+      imageOpenEye.src = '../Image/eye-solid.svg';
+    }
+  });
+
   buttonGoogle.addEventListener('click', () => {
     onNavigate('/login');
     googleRegister()
@@ -173,7 +232,13 @@ export const Register = (onNavigate) => {
       })
       .catch((error) => console.log(error));
   });
+
   // console.log(inputs);
   // console.log(inputForm);
+
+  login.addEventListener('click', () => {
+    onNavigate('/login');
+  });
+
   return register;
 };

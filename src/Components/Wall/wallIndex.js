@@ -1,14 +1,18 @@
 import {
-  newPostCollection, user, onGetPosts, onGetUsers, getUserLog,
+  newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut,
 } from '../../firebase';
 
-export const Wall = () => {
+export const Wall = (onNavigate) => {
   const wallDiv = document.createElement('div');
   wallDiv.className = 'wallDiv';
 
   const logo = document.createElement('header');
   logo.setAttribute('id', 'logo');
   logo.innerText = '<LM>';
+
+  const closeSesion = document.createElement('p');
+  closeSesion.className = 'closeSesion';
+  closeSesion.innerText = 'Cerrar Sesión';
 
   const userPlace = document.createElement('div');
   userPlace.className = 'userPlace';
@@ -51,6 +55,8 @@ export const Wall = () => {
   const showPosts = document.createElement('div');
   showPosts.className = 'showPosts';
 
+  logo.appendChild(closeSesion);
+
   userPlace.appendChild(imageGreaterThan);
   userPlace.appendChild(nameUser);
   userPlace.appendChild(imageLessThan);
@@ -75,6 +81,7 @@ export const Wall = () => {
     users.forEach((userss) => {
       if (userss.data().id === usersUid) {
         getUserLog(usersUid).then((user1) => {
+          localStorage.setItem('userName', user1.data().user);
           nameUser.innerText = user1.data().user;
           console.log(user1.data());
           return user1.data();
@@ -86,7 +93,7 @@ export const Wall = () => {
   buttonSubmitPost.addEventListener('click', async (e) => {
     e.preventDefault();
     if (post.value !== '') {
-      newPostCollection(post.value);
+      newPostCollection(post.value, localStorage.getItem('userName'));
     }
   });
 
@@ -96,8 +103,9 @@ export const Wall = () => {
     showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const posts = doc.data();
-      console.log(doc.data());
-
+      const userName = doc.data().name;
+      console.log(doc.data().post);
+      console.log(doc.data().name);
       const savePosts = document.createElement('div');
       savePosts.className = 'savePosts';
       const containerImageAndUserPosts = document.createElement('div');
@@ -105,7 +113,7 @@ export const Wall = () => {
       const containerUserPosts = document.createElement('div');
       containerUserPosts.className = 'containerUserPosts';
       const nameUserPosts = document.createElement('h3');
-      nameUserPosts.innerText = 'Usuario';
+      nameUserPosts.innerText = userName;
       const containerImagePosts = document.createElement('div');
       containerImagePosts.className = 'containerImagePosts';
       const imageEditPosts = document.createElement('img');
@@ -128,5 +136,12 @@ export const Wall = () => {
       showPosts.appendChild(savePosts);
     });
   });
+
+ closeSesion.addEventListener('click', () => {
+    logOut();
+    localStorage.clear();
+    onNavigate('/');
+  });
+
   return wallDiv;
 };

@@ -1,4 +1,4 @@
-import { loginEmailAndPassword } from '../../firebase';
+import { loginEmailAndPassword, googleRegister } from '../../firebase';
 
 export const Login = (onNavigate) => {
   const login = document.createElement('section');
@@ -14,57 +14,81 @@ export const Login = (onNavigate) => {
   const welcome = document.createElement('p');
   welcome.innerText = 'Inicia sesión para compartir música con la comunidad de Laboratoria.';
 
-  const correoDiv = document.createElement('div');
-  const correo = document.createElement('label');
-  correo.innerText = 'Correo';
+  const emailDiv = document.createElement('div');
+  const email = document.createElement('label');
+  email.innerText = 'Correo';
 
-  const correoInput = document.createElement('input');
-  correoInput.setAttribute('class', 'inputForm');
-  correoInput.setAttribute('name', 'correo1');
-  correoInput.setAttribute('required', '');
-  correoInput.placeholder = 'Ingresa tu correo';
-  correoInput.id = 'correoInput';
-  correoInput.setAttribute('type', 'email');
+  const emailInput = document.createElement('input');
+  emailInput.setAttribute('class', 'inputForm');
+  emailInput.setAttribute('name', 'email1');
+  emailInput.setAttribute('required', '');
+  emailInput.placeholder = 'Ingresa tu correo';
+  emailInput.id = 'emailInput';
+  emailInput.setAttribute('type', 'email');
 
-  const contraseñaDiv = document.createElement('div');
-  const contraseña = document.createElement('label');
-  contraseña.innerText = 'Contraseña';
+  const passwordDiv = document.createElement('div');
+  const password = document.createElement('label');
+  password.innerText = 'Contraseña';
 
-  const contraseñaInput = document.createElement('input');
-  contraseñaInput.setAttribute('class', 'inputForm');
-  contraseñaInput.setAttribute('required', '');
-  contraseñaInput.placeholder = 'Ingresa tu contraseña';
-  contraseñaInput.id = 'contraseñaInput';
-  contraseñaInput.setAttribute('type', 'password');
-  contraseñaInput.setAttribute('name', 'contraseña1');
+  const divPassword = document.createElement('div');
+  divPassword.setAttribute('class', 'divPassword');
+
+  const passwordInput = document.createElement('input');
+  passwordInput.setAttribute('class', 'inputForm');
+  passwordInput.setAttribute('required', '');
+  passwordInput.placeholder = 'Ingresa tu contraseña';
+  passwordInput.setAttribute('id', 'passwordInput');
+  passwordInput.setAttribute('type', 'password');
+  passwordInput.setAttribute('name', 'password1');
+
+  const imageEye = document.createElement('img');
+  imageEye.src = '../Image/eye-solid.svg';
+  imageEye.setAttribute('id', 'imageEye');
 
   const buttonRegister = document.createElement('button');
   buttonRegister.innerText = 'Iniciar sesión';
   buttonRegister.id = 'registerButton';
 
   const buttonGoogle = document.createElement('button');
-  const imagen = document.createElement('img');
-  imagen.src = 'https://andigarcia.com/wp-content/uploads/2020/04/Google-Logo-Fondo-negro.jpg';
+  const image = document.createElement('img');
+  image.src = 'https://andigarcia.com/wp-content/uploads/2020/04/Google-Logo-Fondo-negro.jpg';
   buttonGoogle.innerText = 'Ingresa con Google';
   buttonGoogle.setAttribute('id', 'buttonGoogle');
+
+  const divAccount = document.createElement('div');
+  divAccount.className = 'divAccount';
+
+  const notHaveAccount = document.createElement('h3');
+  notHaveAccount.innerText = '¿No tienes cuenta?';
+  notHaveAccount.className = 'notHaveAccount';
+  const register = document.createElement('h3');
+  register.innerText = 'Regístrate';
+  register.className = 'register';
 
   // buttonGoogle.addEventListener('click', async (e) => {
   // try {
   // await registroGoogle();
   // } catch (error) {}
   // });
-  buttonGoogle.appendChild(imagen);
+  buttonGoogle.appendChild(image);
 
-  correoDiv.appendChild(correo);
-  correoDiv.appendChild(correoInput);
+  emailDiv.appendChild(email);
+  emailDiv.appendChild(emailInput);
 
-  contraseñaDiv.appendChild(contraseña);
-  contraseñaDiv.appendChild(contraseñaInput);
+  divPassword.appendChild(passwordInput);
+  divPassword.appendChild(imageEye);
 
-  Home.appendChild(correoDiv);
-  Home.appendChild(contraseñaDiv);
+  passwordDiv.appendChild(password);
+  passwordDiv.appendChild(divPassword);
+
+  divAccount.appendChild(notHaveAccount);
+  divAccount.appendChild(register);
+
+  Home.appendChild(emailDiv);
+  Home.appendChild(passwordDiv);
   Home.appendChild(buttonRegister);
   Home.appendChild(buttonGoogle);
+  Home.appendChild(divAccount);
   // Home.appendChild(buttonGoogle);
   login.appendChild(title);
   login.appendChild(welcome);
@@ -74,7 +98,7 @@ export const Login = (onNavigate) => {
     e.preventDefault();
 
     // TODO: antes de llamar a registerClick, deben validar los inputs
-    loginEmailAndPassword(correoInput.value, contraseñaInput.value)
+    loginEmailAndPassword(emailInput.value, passwordInput.value)
       .then((userCrendentials) => {
         console.log(userCrendentials.user);
         onNavigate('/muro');
@@ -97,11 +121,29 @@ export const Login = (onNavigate) => {
     // inputForm();
   });
 
-  buttonGoogle.addEventListener('click', () => {
-    // onNavigate('/profile');
-    // googleClick();
+  imageEye.addEventListener('click', () => {
+    const passwordType = document.getElementById('passwordInput');
+    const imageOpenEye = document.getElementById('imageEye');
+    if (passwordType.type === 'password') {
+      passwordType.type = 'text';
+      imageOpenEye.src = '../Image/eye-slash-solid.svg';
+    } else {
+      passwordType.type = 'password';
+      imageOpenEye.src = '../Image/eye-solid.svg';
+    }
   });
+
+  buttonGoogle.addEventListener('click', () => {
+    googleRegister();
+    onNavigate('/wall');
+  });
+
   // console.log(inputs);
   // console.log(inputForm);
+
+  register.addEventListener('click', () => {
+    onNavigate('/register');
+  });
+
   return login;
 };

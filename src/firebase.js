@@ -34,6 +34,7 @@ export const user = () => {
   auth.onAuthStateChanged((us) => {
     if (us) {
       localStorage.setItem('uidUsuario', us.uid);
+      localStorage.setItem('emailUser', us.email);
       console.log('state = definitely signed in');
     } else {
       // User is signed out.
@@ -68,9 +69,10 @@ export const newUserCollection = (userID, usuario, email, contraseña) => {
   });
 };
 
-export const newPostCollection = (post) => {
+export const newPostCollection = (post, name) => {
   addDoc(collection(database, 'posts'), {
     post,
+    name,
   });
 };
 

@@ -62,9 +62,9 @@ export const validate = (name, value, elementId) => {
       validateField(expressions.email, value, 'emailInput', elementId);
       validateFirst('emailInput', 'emailInput2');
       break;
-    case 'email2':
-      validateEquals('emailInput', 'emailInput2', elementId);
-      break;
+    // case 'email2':
+    //   validateEquals('emailInput', 'emailInput2', elementId);
+    //   break;
     case 'password1':
       validateField(expressions.password, value, 'passwordInput', elementId);
       validateFirst('passwordInput', 'passwordInput2');

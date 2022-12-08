@@ -8,6 +8,7 @@ import { Profile } from './Components/Profile/profileIndex.js';
 import { Register } from './Components/Register/registerIndex.js';
 import { Login } from './Components/Login/loginIndex.js';
 import { Wall } from './Components/Wall/wallIndex.js';
+import { Home } from './Components/Home/home.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -26,10 +27,11 @@ export const onNavigate = (pathname) => {
 };
 
 routes = {
-  '/': Register(onNavigate),
+  '/': Home(onNavigate),
+  '/register': Register(onNavigate),
   '/profile': Profile(onNavigate),
   '/login': Login(onNavigate),
-  '/muro': Wall(onNavigate),
+  '/wall': Wall(onNavigate),
 };
 
 const componente = () => routes[window.location.pathname];

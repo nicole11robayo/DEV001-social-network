@@ -155,6 +155,7 @@ button img {
 .imageLikePosts {
   display: block;
   margin-left: auto;
+  height: 40px;
 }
 
 .containerImage img {
@@ -229,4 +230,8 @@ button img {
 
 .containerImagePosts.show {
   display: block;
+}
+
+.likeDiv{
+  display: inline-flex;
 }

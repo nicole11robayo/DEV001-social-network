@@ -1,5 +1,6 @@
 import {
   newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut, deletePost, updatePost,
+  updateLikePost, disLikePost,
 } from '../../firebase';
 
 export const Wall = (onNavigate) => {
@@ -102,10 +103,12 @@ export const Wall = (onNavigate) => {
     post.value = '';
     showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
+      const likesArray = doc.data().likes;
       const posts = doc.data();
       console.log(posts);
       const userName = doc.data().name;
       console.log(doc.data().post);
+      console.log(doc.data().likes);
       console.log(doc.data().name);
       console.log(doc.data().uid);
       console.log(doc.id);
@@ -122,7 +125,7 @@ export const Wall = (onNavigate) => {
       const containerImagePosts = document.createElement('div');
       containerImagePosts.className = 'containerImagePosts';
       const imageEditPosts = document.createElement('img');
-      imageEditPosts.src = '../Image/editar.png';
+      imageEditPosts.src = '../Image/edit.png';
       const imageDeletePosts = document.createElement('img');
       imageDeletePosts.src = '../Image/trash.png';
 
@@ -137,9 +140,17 @@ export const Wall = (onNavigate) => {
       const buttonEditPost = document.createElement('button');
       buttonEditPost.innerText = 'Editar Post';
 
+      const likeDiv = document.createElement('div');
+      likeDiv.classList = 'likeDiv';
+
       const imageLikePosts = document.createElement('img');
       imageLikePosts.className = 'imageLikePosts';
-      imageLikePosts.src = '../Image/Ilike.png';
+      imageLikePosts.src = '../Image/hearth.png';
+      imageLikePosts.setAttribute('id', 'imageLikePosts');
+
+      const counterLikesPost = document.createElement('p');
+      counterLikesPost.innerText = likesArray.length;
+      counterLikesPost.className = 'counterLikesPost';
 
       containerUserPosts.appendChild(nameUserPosts);
       containerImagePosts.appendChild(imageEditPosts);
@@ -148,10 +159,12 @@ export const Wall = (onNavigate) => {
       editPostDiv.appendChild(buttonEditPost);
       containerImageAndUserPosts.appendChild(containerUserPosts);
       containerImageAndUserPosts.appendChild(containerImagePosts);
+      likeDiv.appendChild(counterLikesPost);
+      likeDiv.appendChild(imageLikePosts);
       savePosts.appendChild(containerImageAndUserPosts);
       savePosts.appendChild(messagePosts);
       savePosts.appendChild(editPostDiv);
-      savePosts.appendChild(imageLikePosts);
+      savePosts.appendChild(likeDiv);
       showPosts.appendChild(savePosts);
 
       if (usersUid === uidUser) {
@@ -160,6 +173,26 @@ export const Wall = (onNavigate) => {
 
       imageEditPosts.addEventListener('click', () => {
         editPostDiv.classList.add('show');
+      });
+
+      // let counterLikes = 0;
+
+      imageLikePosts.addEventListener('click', () => {
+        if (likesArray.includes(usersUid)) {
+          disLikePost(postId, usersUid)
+            .then(() => {
+              console.log('Quitamos tu like');
+            })
+            .catch((error) => console.log(error));
+          imageLikePosts.src = '../Image/hearth.png';
+        } else {
+          updateLikePost(postId, usersUid)
+            .then(() => {
+              console.log('Apareció tu Like');
+            })
+            .catch((error) => console.log(error));
+          imageLikePosts.src = '../Image/greenHearth.png';
+        }
       });
 
       buttonEditPost.addEventListener('click', () => {

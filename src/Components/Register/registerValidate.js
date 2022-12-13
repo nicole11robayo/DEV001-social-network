@@ -60,7 +60,6 @@ export const validate = (name, value, elementId) => {
       break;
     case 'email1':
       validateField(expressions.email, value, 'emailInput', elementId);
-      validateFirst('emailInput', 'emailInput2');
       break;
     // case 'email2':
     //   validateEquals('emailInput', 'emailInput2', elementId);

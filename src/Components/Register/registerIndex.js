@@ -182,7 +182,7 @@ export const Register = (onNavigate) => {
 
     // TODO: antes de llamar a registerClick, deben validar los inputs
 
-    registerEmailAndPassword(emailInput.value, emailInput.value)
+    registerEmailAndPassword(emailInput.value, passwordInput.value)
       .then((UserCredential) => {
         console.log(UserCredential.user.uid);
         const userID = UserCredential.user.uid;

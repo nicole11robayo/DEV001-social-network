@@ -46,7 +46,7 @@ export const Login = (onNavigate) => {
   imageEye.setAttribute('id', 'imageEye');
 
   const buttonRegister = document.createElement('button');
-  buttonRegister.innerText = 'Iniciar sesión';
+  buttonRegister.innerText = 'Inicia sesión';
   buttonRegister.id = 'registerButton';
 
   const buttonGoogle = document.createElement('button');

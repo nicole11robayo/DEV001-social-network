@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import {
   getFirestore, addDoc, collection, doc, setDoc, onSnapshot, getDoc, deleteDoc, updateDoc,
-  arrayUnion, arrayRemove,
+  arrayUnion, arrayRemove, serverTimestamp, query, orderBy,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -76,6 +76,7 @@ export const newPostCollection = (post, name, uid) => {
     name,
     uid,
     likes: [],
+    dateCreated: serverTimestamp(),
   });
 };
 
@@ -98,6 +99,11 @@ export const updateLikePost = (uid, counterLikes) => updateDoc(doc(database, 'po
 export const disLikePost = (uid, counterLikes) => updateDoc(doc(database, 'posts', uid), {
   likes: arrayRemove(counterLikes),
 });
+
+const collectionFirebase = collection(database, 'posts');
+
+export const order = () => query(collectionFirebase, orderBy('timestamp', 'desc'));
+
 // export const catchData = getDocs(collection(database, 'users'));
 // catchData.forEach((doc) => {
 //   console.log(doc.id, doc);

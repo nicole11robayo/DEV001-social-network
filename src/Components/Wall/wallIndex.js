@@ -1,6 +1,6 @@
 import {
   newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut, deletePost, updatePost,
-  updateLikePost, disLikePost,
+  updateLikePost, disLikePost, order,
 } from '../../firebase';
 
 export const Wall = (onNavigate) => {
@@ -99,6 +99,8 @@ export const Wall = (onNavigate) => {
   });
 
   onGetPosts((querySnapshot) => {
+    console.log(order);
+    console.log(order());
     console.log(querySnapshot);
     post.value = '';
     showPosts.innerHTML = '';
@@ -145,7 +147,7 @@ export const Wall = (onNavigate) => {
 
       const imageLikePosts = document.createElement('img');
       imageLikePosts.className = 'imageLikePosts';
-      imageLikePosts.src = '../Image/hearth.png';
+      imageLikePosts.src = likesArray.includes(usersUid) ? '../Image/Greenhearth.png' : '../Image/hearth.png';
       imageLikePosts.setAttribute('id', 'imageLikePosts');
 
       const counterLikesPost = document.createElement('p');

@@ -91,6 +91,15 @@ button img {
   display: block;
 }
 
+.errorUserExist.activo {
+  display: block;
+  color: rgba(223, 26, 26, 0.933);
+}
+
+.errorUserExist {
+  display: none;
+}
+
 .imagenMayor{
   width: 32px;
 }

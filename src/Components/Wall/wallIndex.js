@@ -100,16 +100,17 @@ export const Wall = (onNavigate) => {
 
   onGetPosts((querySnapshot) => {
     console.log(order);
-    console.log(order());
     console.log(querySnapshot);
     post.value = '';
     showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
+      console.log(order(doc.data()));
       const likesArray = doc.data().likes;
       const posts = doc.data();
       console.log(posts);
       const userName = doc.data().name;
       console.log(doc.data().post);
+      console.log(doc.data().dateCreated);
       console.log(doc.data().likes);
       console.log(doc.data().name);
       console.log(doc.data().uid);

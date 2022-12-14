@@ -1,4 +1,6 @@
-import { googleRegister, newUserCollection, registerEmailAndPassword } from '../../firebase';
+import {
+  googleRegister, newUserCollection, registerEmailAndPassword, onGetUsers,
+} from '../../firebase';
 import { validate } from './registerValidate';
 // eslint-disable-next-line import/no-cycle
 
@@ -18,19 +20,22 @@ export const Register = (onNavigate) => {
 
   const userDiv = document.createElement('div');
   const user = document.createElement('label');
-  user.innerText = 'Nombre';
+  user.innerText = 'Usuario';
 
   const userInput = document.createElement('input');
   userInput.setAttribute('name', 'user');
   userInput.setAttribute('required', '');
   userInput.ariaRequired = 'rellena este campo';
-  userInput.placeholder = 'Ingresa tu nombre';
+  userInput.placeholder = 'Ingresa tu usuario';
   userInput.id = 'userInput';
   userInput.setAttribute('class', 'inputForm');
   const errorUser = document.createElement('h6');
   errorUser.innerText = 'El nombre debe tener entre 3 y 16 caracteres, puede contener números, _ y - .';
   errorUser.setAttribute('class', 'error');
   errorUser.setAttribute('id', 'message-error-user-1');
+  const errorUserExist = document.createElement('h5');
+  errorUserExist.innerText = 'Este nombre de usuario ya existe';
+  errorUserExist.setAttribute('class', 'errorUserExist');
 
   const emailDiv = document.createElement('div');
   const email = document.createElement('label');
@@ -133,6 +138,7 @@ export const Register = (onNavigate) => {
   userDiv.appendChild(user);
   userDiv.appendChild(userInput);
   userDiv.appendChild(errorUser);
+  userDiv.appendChild(errorUserExist);
 
   emailDiv.appendChild(email);
   emailDiv.appendChild(emailInput);
@@ -177,6 +183,22 @@ export const Register = (onNavigate) => {
     });
   });
 
+  userInput.addEventListener('keyup', () => {
+    onGetUsers((users) => {
+      const userNames = [];
+      users.forEach((userss) => {
+        userNames.push(userss.data().user);
+      });
+      if (userNames.includes(userInput.value)) {
+        console.log('este usuario ya existe');
+        console.log(errorUserExist);
+        errorUserExist.classList.add('activo');
+      } else {
+        errorUserExist.classList.remove('activo');
+      }
+    });
+  });
+
   Home.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -188,6 +210,7 @@ export const Register = (onNavigate) => {
         const userID = UserCredential.user.uid;
         onNavigate('/login');
         newUserCollection(userID, userInput.value, emailInput.value, passwordInput.value);
+        console.log(UserCredential.User);
       });
     /*
     .then(() => onNavigate('/login'));

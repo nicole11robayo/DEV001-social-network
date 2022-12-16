@@ -13,10 +13,17 @@ export const Register = (onNavigate) => {
 
   const title = document.createElement('h1');
   title.innerText = '<Laboratorians Music>';
-  title.id = 'title';
+  title.setAttribute('class', 'title');
 
   const welcome = document.createElement('p');
   welcome.innerText = 'Regístrate para compartir música con la comunidad de Laboratoria.';
+
+  const containerImageAndRegister = document.createElement('div');
+  containerImageAndRegister.setAttribute('class', 'containerImageAndRegister');
+
+  const imageRegister = document.createElement('img');
+  imageRegister.src = '../Image/registerLab.jpeg';
+  imageRegister.setAttribute('class', 'registerLab');
 
   const userDiv = document.createElement('div');
   const user = document.createElement('label');
@@ -167,10 +174,13 @@ export const Register = (onNavigate) => {
   Home.appendChild(buttonRegister);
   Home.appendChild(buttonGoogle);
   Home.appendChild(divAccount);
-  // Home.appendChild(buttonGoogle);
+
+  containerImageAndRegister.appendChild(imageRegister);
+  containerImageAndRegister.appendChild(Home);
+
   register.appendChild(title);
   register.appendChild(welcome);
-  register.appendChild(Home);
+  register.appendChild(containerImageAndRegister);
 
   const inputs = Home.querySelectorAll('input');
   inputs.forEach((input, index) => {

@@ -14,6 +14,13 @@ export const Login = (onNavigate) => {
   const welcome = document.createElement('p');
   welcome.innerText = 'Inicia sesión para compartir música con la comunidad de Laboratoria.';
 
+  const containerImageAndLogin = document.createElement('div');
+  containerImageAndLogin.setAttribute('class', 'containerImageAndLogin');
+
+  const imageLogin = document.createElement('img');
+  imageLogin.src = '../Image/loginLab.jpeg';
+  imageLogin.setAttribute('class', 'registerLab');
+
   const emailDiv = document.createElement('div');
   const email = document.createElement('label');
   email.innerText = 'Correo';
@@ -90,9 +97,12 @@ export const Login = (onNavigate) => {
   Home.appendChild(buttonGoogle);
   Home.appendChild(divAccount);
   // Home.appendChild(buttonGoogle);
+  containerImageAndLogin.appendChild(imageLogin);
+  containerImageAndLogin.appendChild(Home);
+
   login.appendChild(title);
   login.appendChild(welcome);
-  login.appendChild(Home);
+  login.appendChild(containerImageAndLogin);
 
   Home.addEventListener('submit', (e) => {
     e.preventDefault();

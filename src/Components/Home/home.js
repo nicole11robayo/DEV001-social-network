@@ -7,8 +7,18 @@ export const Home = (onNavigate) => {
   title.id = 'title';
 
   const messageP = document.createElement('p');
-  messageP.innerText = 'Inicia sesión o regístrate para que compartas musica con la comunidad de Laboratoria';
+  messageP.innerText = 'Inicia sesión o regístrate para compartir música con la comunidad de Laboratoria';
   messageP.className = 'messageP';
+
+  const containerGifAndButtons = document.createElement('div');
+  containerGifAndButtons.setAttribute('class', 'containerGifAndButtons');
+
+  const imageHomeGif = document.createElement('img');
+  imageHomeGif.src = '../Image/emocion.gif';
+  imageHomeGif.setAttribute('class', 'imageHomeGif');
+
+  const homeButtons = document.createElement('div');
+  homeButtons.className = 'homeButtons';
 
   const buttonLogin = document.createElement('button');
   buttonLogin.className = 'buttonLogin';
@@ -18,10 +28,15 @@ export const Home = (onNavigate) => {
   buttonRegister.className = 'buttonRegister';
   buttonRegister.innerText = 'Regístrate';
 
+  containerGifAndButtons.appendChild(imageHomeGif);
+  containerGifAndButtons.appendChild(homeButtons);
+
+  homeButtons.appendChild(buttonLogin);
+  homeButtons.appendChild(buttonRegister);
+
   homeDiv.appendChild(title);
   homeDiv.appendChild(messageP);
-  homeDiv.appendChild(buttonLogin);
-  homeDiv.appendChild(buttonRegister);
+  homeDiv.appendChild(containerGifAndButtons);
 
   buttonLogin.addEventListener('click', (e) => {
     e.preventDefault();

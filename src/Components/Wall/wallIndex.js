@@ -99,7 +99,8 @@ export const Wall = (onNavigate) => {
   });
 
   onGetPosts((querySnapshot) => {
-    console.log(order);
+    order();
+    console.log(order());
     console.log(querySnapshot);
     post.value = '';
     showPosts.innerHTML = '';
@@ -138,7 +139,7 @@ export const Wall = (onNavigate) => {
 
       const editPostDiv = document.createElement('div');
       editPostDiv.setAttribute('class', 'editPostDiv');
-      const editPost = document.createElement('input');
+      const editPost = document.createElement('textarea');
       editPost.value = posts.post;
       const buttonEditPost = document.createElement('button');
       buttonEditPost.innerText = 'Editar Post';

@@ -234,14 +234,12 @@ export const Register = (onNavigate) => {
   });
 
   imageEye.addEventListener('click', () => {
-    const passwordType = document.getElementById('passwordInput');
-    const imageOpenEye = document.getElementById('imageEye');
-    if (passwordType.type === 'password') {
-      passwordType.type = 'text';
-      imageOpenEye.src = '../Image/eye-slash-solid.svg';
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      imageEye.src = '../Image/eye-slash-solid.svg';
     } else {
-      passwordType.type = 'password';
-      imageOpenEye.src = '../Image/eye-solid.svg';
+      passwordInput.type = 'password';
+      imageEye.src = '../Image/eye-solid.svg';
     }
   });
 

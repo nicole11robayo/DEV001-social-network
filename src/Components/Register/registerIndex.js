@@ -1,5 +1,5 @@
 import {
-  googleRegister, newUserCollection, registerEmailAndPassword, onGetUsers,
+  googleRegister, newUserCollection, registerEmailAndPassword, onGetUsers, profileUpdate,
 } from '../../firebase';
 import { validate } from './registerValidate';
 // eslint-disable-next-line import/no-cycle
@@ -26,8 +26,8 @@ export const Register = (onNavigate) => {
   imageRegister.setAttribute('class', 'registerLab');
 
   const userDiv = document.createElement('div');
-  const user = document.createElement('label');
-  user.innerText = 'Usuario';
+  const userLabel = document.createElement('label');
+  userLabel.innerText = 'Usuario';
 
   const userInput = document.createElement('input');
   userInput.setAttribute('name', 'user');
@@ -122,7 +122,7 @@ export const Register = (onNavigate) => {
   const buttonGoogle = document.createElement('button');
   const image = document.createElement('img');
   image.src = 'https://andigarcia.com/wp-content/uploads/2020/04/Google-Logo-Fondo-negro.jpg';
-  buttonGoogle.innerText = 'Ingresa con Google';
+  buttonGoogle.innerText = 'Regístro con Google';
   buttonGoogle.setAttribute('id', 'buttonGoogle');
 
   const divAccount = document.createElement('div');
@@ -142,7 +142,7 @@ export const Register = (onNavigate) => {
   // });
   buttonGoogle.appendChild(image);
 
-  userDiv.appendChild(user);
+  userDiv.appendChild(userLabel);
   userDiv.appendChild(userInput);
   userDiv.appendChild(errorUser);
   userDiv.appendChild(errorUserExist);
@@ -216,11 +216,11 @@ export const Register = (onNavigate) => {
 
     registerEmailAndPassword(emailInput.value, passwordInput.value)
       .then((UserCredential) => {
-        console.log(UserCredential.user.uid);
+        // console.log(UserCredential.user.uid);
         const userID = UserCredential.user.uid;
         onNavigate('/login');
+        profileUpdate(userInput.value);
         newUserCollection(userID, userInput.value, emailInput.value, passwordInput.value);
-        console.log(UserCredential.User);
       });
     /*
     .then(() => onNavigate('/login'));
@@ -256,12 +256,11 @@ export const Register = (onNavigate) => {
   });
 
   buttonGoogle.addEventListener('click', () => {
+    // const uidUsuario = localStorage.getItem('uidUsuario');
+    // const emailUser = localStorage.getItem('emailUser');
+    // const displayName = localStorage.getItem('displayName');
+    googleRegister();
     onNavigate('/login');
-    googleRegister()
-      .then((credenciales) => {
-        console.log(credenciales);
-      })
-      .catch((error) => console.log(error));
   });
 
   // console.log(inputs);

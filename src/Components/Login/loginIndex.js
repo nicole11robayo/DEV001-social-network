@@ -1,4 +1,4 @@
-import { loginEmailAndPassword, googleRegister } from '../../firebase';
+import { loginEmailAndPassword, googleRegister, user } from '../../firebase';
 
 export const Login = (onNavigate) => {
   const login = document.createElement('section');
@@ -109,9 +109,12 @@ export const Login = (onNavigate) => {
 
     // TODO: antes de llamar a registerClick, deben validar los inputs
     loginEmailAndPassword(emailInput.value, passwordInput.value)
-      .then((userCrendentials) => {
-        console.log(userCrendentials.user);
+      .then(() => {
+        // console.log(userCrendentials.user);
         onNavigate('/wall');
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
+        user();
       })
       .catch((error) => {
         // Handle Errors here.
@@ -143,8 +146,8 @@ export const Login = (onNavigate) => {
 
   buttonGoogle.addEventListener('click', () => {
     googleRegister();
-    console.log(typeof onNavigate);
     onNavigate('/wall');
+    user();
   });
 
   // console.log(inputs);

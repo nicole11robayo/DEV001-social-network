@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword,
-  GoogleAuthProvider, signInWithPopup,
+  GoogleAuthProvider, signInWithPopup, updateProfile,
 } from 'firebase/auth';
 import {
   getFirestore, addDoc, collection, doc, setDoc, onSnapshot, getDoc, deleteDoc, updateDoc,
@@ -36,6 +36,8 @@ export const user = () => {
     if (us) {
       localStorage.setItem('uidUsuario', us.uid);
       localStorage.setItem('emailUser', us.email);
+      localStorage.setItem('displayName', us.displayName);
+      console.log(us.displayName);
       console.log('state = definitely signed in');
     } else {
       // User is signed out.
@@ -43,6 +45,10 @@ export const user = () => {
     }
   });
 };
+
+export const profileUpdate = (displayName) => updateProfile(auth.currentUser, {
+  displayName,
+});
 
 // eslint-disable-next-line arrow-body-style
 export const loginEmailAndPassword = (email, password) => {

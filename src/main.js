@@ -15,6 +15,7 @@ const rootDiv = document.getElementById('root');
 let routes = {};
 
 export const onNavigate = (pathname) => {
+  console.log('Ejecutando OnNavigate');
   window.history.pushState(
     {},
     pathname,

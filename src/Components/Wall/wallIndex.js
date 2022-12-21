@@ -1,5 +1,5 @@
 import {
-  newPostCollection, user, onGetPosts, onGetUsers, getUserLog, logOut, deletePost, updatePost,
+  newPostCollection, onGetPosts, logOut, deletePost, updatePost,
   updateLikePost, disLikePost, order,
 } from '../../firebase';
 
@@ -74,27 +74,16 @@ export const Wall = (onNavigate) => {
   wallDiv.appendChild(allPublications);
   wallDiv.appendChild(showPosts);
 
-  user();
   const usersUid = localStorage.getItem('uidUsuario');
+  const displayName = localStorage.getItem('displayName');
   console.log(usersUid);
   console.log(localStorage);
-  onGetUsers((users) => {
-    users.forEach((userss) => {
-      if (userss.data().id === usersUid) {
-        getUserLog(usersUid).then((user1) => {
-          localStorage.setItem('userName', user1.data().user);
-          nameUser.innerText = user1.data().user;
-          console.log(user1.data());
-          return user1.data();
-        });
-      }
-    });
-  });
+  nameUser.innerText = displayName;
 
   buttonSubmitPost.addEventListener('click', async (e) => {
     e.preventDefault();
     if (post.value !== '') {
-      newPostCollection(post.value, localStorage.getItem('userName'), usersUid);
+      newPostCollection(post.value, localStorage.getItem('displayName'), usersUid);
     }
   });
 
@@ -110,6 +99,7 @@ export const Wall = (onNavigate) => {
       const posts = doc.data();
       console.log(posts);
       const userName = doc.data().name;
+      console.log(doc.data());
       console.log(doc.data().post);
       console.log(doc.data().dateCreated);
       console.log(doc.data().likes);
@@ -129,8 +119,10 @@ export const Wall = (onNavigate) => {
       const containerImagePosts = document.createElement('div');
       containerImagePosts.className = 'containerImagePosts';
       const imageEditPosts = document.createElement('img');
+      imageEditPosts.setAttribute('class', 'imageEditPosts');
       imageEditPosts.src = '../Image/edit.png';
       const imageDeletePosts = document.createElement('img');
+      imageDeletePosts.setAttribute('class', 'imageDeletePosts');
       imageDeletePosts.src = '../Image/trash.png';
 
       const messagePosts = document.createElement('p');
@@ -178,8 +170,6 @@ export const Wall = (onNavigate) => {
       imageEditPosts.addEventListener('click', () => {
         editPostDiv.classList.add('show');
       });
-
-      // let counterLikes = 0;
 
       imageLikePosts.addEventListener('click', () => {
         if (likesArray.includes(usersUid)) {

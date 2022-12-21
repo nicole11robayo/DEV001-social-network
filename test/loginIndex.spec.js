@@ -7,9 +7,11 @@ import { onNavigate } from '../__mocks__/main.js';
 window.alert = jest.fn();
 jest.mock('firebase/auth');
 jest.mock('../__mocks__/main.js');
+jest.mock('../src/Components/Login/loginIndex.js');
+jest.mock('../src/firebase.js');
 
 describe('test de login', () => {
-   const element = Login();
+   const element = Login(jest.fn());
    const password1 = element.querySelector('#passwordInput');
    const email = element.querySelector('#emailInput');
    const form = element.querySelector('#home');
@@ -20,11 +22,18 @@ describe('test de login', () => {
   it('Existe el boton de iniciar sesion', () => {
     const buttonRegister = element.querySelector('#registerButton');
     expect(buttonRegister).not.toBeNull();
+    buttonRegister.click();
+    expect(typeof onNavigate).toBe('function');
+  });
+  it('OnNavigate debe ser una función', () => {
+     expect(typeof onNavigate).toBe('function');
   });
   it('Existe el boton de iniciar sesion con Google', () => {
     const buttonGoogle = element.querySelector('#buttonGoogle');
     expect(buttonGoogle).not.toBeNull();
-    expect(typeof onNavigate).toBe('function');
+    buttonGoogle.click();
+    // onNavigate('/test');
+   // expect().toBe('function');
   });
   it('Existe el boton de Ojo para ver el password', () => {
     const imageEyeClose = element.querySelector('#imageEye');

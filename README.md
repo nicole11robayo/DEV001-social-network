@@ -71,7 +71,7 @@ y se publica el post con el nombre de usuario.
 ### Historia de usuario 4 INTERACCIÓN MURO
 
 Ahora entramos a la funcionalidad de nuestro muro, en el cual ahora podemos editar
-nuestros posts, al borrar la publicación nos envía un mensaje de confirmación para poder eliminarlopor completo, también puedes dar like y quitar like no tan solo de tus post sino
+nuestros posts, al borrar la publicación nos envía un mensaje de confirmación para poder eliminarlo por completo, también puedes dar like y quitar like no tan solo de tus post sino
 también de otros usuarios.
 
 

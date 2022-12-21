@@ -3,8 +3,8 @@
 ## 1. Preámbulo
 
 Es una red social creada para la comunidad de Laboratoria, para que cada persona
-en su día a día salga de su zona de confort con el codigo y venga a compartir con nosotras
-nombres de canciones, momentos emocionantes sobre generos musicales y conciertos.
+en su día a día salga de su zona de confort con el código y venga a compartir con nosotras
+nombres de canciones, momentos emocionantes sobre géneros musicales y conciertos.
 
 [![Screen-Shot-2022-12-20-at-12-31-22.png](https://i.postimg.cc/hPxW1Fq6/Screen-Shot-2022-12-20-at-12-31-22.png)](https://postimg.cc/8j10T0cm)
 
@@ -15,9 +15,9 @@ nombres de canciones, momentos emocionantes sobre generos musicales y conciertos
 ### Historia de usuario 1 REGISTRO 
 
 Constó de la creación del registro de una cuenta con autenticación de correo y contraseña
-también con una cuenta de Google, nos enfocamos en que lo que se escibiera dentro del
-campo de la contraseña fuera secreto, ademas de va validar si son iguales para que
-nuestro usario no se confundiera. Igualmente monstramos mensajes descriptivos por si habían 
+también con una cuenta de Google, nos enfocamos en que lo que se escribiera dentro del
+campo de la contraseña fuera secreto, además de validar si son iguales para que
+nuestro usuario no se confunda. Igualmente mostramos mensajes descriptivos por si habían 
 errores para ayudar al usuario a corregirlos y sí pasabas todo correctamente te envía a 
 la página de login.
 
@@ -35,9 +35,9 @@ la página de login.
 
 ### Historia de usuario 2 LOGIN
 
-Toma a los usuarios ya regitrados y los hace iniciar sesión, puedes ver o ocultar
-tu contraseña con el ojito. Después de iniciar sesión te redirecciona a el muro
-en caso de que pongas mal la contraseña o el correo, no te deja ingresar, además
+Toma a los usuarios ya registrados y los hace iniciar sesión, puedes ver u ocultar
+tu contraseña con el ojito. Después de iniciar sesión te redirecciona a el muro,
+en caso de que pongas mal la contraseña o el correo no te deja ingresar, además
 también te deja ingresar con Google.
 
 #### Prototipo de alta fidelidad
@@ -54,9 +54,9 @@ también te deja ingresar con Google.
 
 ### Historia de usuario 3 POST MURO
 
-Entramos a la parte mas importante de nuestro proyecto nuestro muro en el que
-podemos publicar post y poder verlos mas abajo despues de darle click al 
-botón de subir, cuando se suben los post se borra los datos que tenia el input
+Entramos a la parte más importante de nuestro proyecto, nuestro muro en el que
+podemos publicar posts y poder verlos mas abajo después de darle click al 
+botón de subir, cuando se suben los posts se borra el mensaje que tenía el input
 y se publica el post con el nombre de usuario. 
 
 
@@ -70,10 +70,9 @@ y se publica el post con el nombre de usuario.
 
 ### Historia de usuario 4 INTERACCIÓN MURO
 
-Ahora entramos a aún mas la funcionalidad de nuestro post ahora podemos editarlo,
-al borrar la publicacion nos envia un mensaje de confirmación para poder eliminarlo
-por completo, también puedes dar like y quitar like no tan solo de tus post sino
-también de otros posts.
+Ahora entramos a la funcionalidad de nuestro muro, en el cual ahora podemos editar
+nuestros posts, al borrar la publicación nos envía un mensaje de confirmación para poder eliminarlopor completo, también puedes dar like y quitar like no tan solo de tus post sino
+también de otros usuarios.
 
 
 #### Prototipo de alta fidelidad

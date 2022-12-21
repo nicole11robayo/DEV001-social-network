@@ -18,6 +18,10 @@ describe('test de registro', () => {
     const startText = element.querySelector('.textStart').innerText;
     expect(startText).toBe('Comparte tu canción o gustos musicales favoritos acá abajo y recibe muchos likes:');
   });
+  it('Existe el texto de bienvenida', () => {
+    const gifImage = element.querySelector('.imageGif').src;
+    expect(gifImage).toBe('../Image/celebrar.gif');
+  });
   it('Existe el botón para subir posts', () => {
     const buttonPost = element.querySelector('.buttonSubmitPost');
     expect(buttonPost).not.toBeNull();

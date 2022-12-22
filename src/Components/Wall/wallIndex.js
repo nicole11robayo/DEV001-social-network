@@ -1,6 +1,6 @@
 import {
   newPostCollection, onGetPosts, logOut, deletePost, updatePost,
-  updateLikePost, disLikePost, order,
+  updateLikePost, disLikePost,
 } from '../../firebase';
 
 export const Wall = (onNavigate) => {
@@ -39,6 +39,7 @@ export const Wall = (onNavigate) => {
   formWall.className = 'formWall';
 
   const createPost = document.createElement('p');
+  createPost.setAttribute('class', 'createPost');
   createPost.innerText = 'Crea una publicación';
 
   const post = document.createElement('textarea');
@@ -78,6 +79,7 @@ export const Wall = (onNavigate) => {
   const displayName = localStorage.getItem('displayName');
   console.log(usersUid);
   console.log(localStorage);
+  console.log(document);
   nameUser.innerText = displayName;
 
   buttonSubmitPost.addEventListener('click', async (e) => {
@@ -88,24 +90,12 @@ export const Wall = (onNavigate) => {
   });
 
   onGetPosts((querySnapshot) => {
-    order();
-    console.log(order());
-    console.log(querySnapshot);
     post.value = '';
     showPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
-      console.log(order(doc.data()));
       const likesArray = doc.data().likes;
       const posts = doc.data();
-      console.log(posts);
       const userName = doc.data().name;
-      console.log(doc.data());
-      console.log(doc.data().post);
-      console.log(doc.data().dateCreated);
-      console.log(doc.data().likes);
-      console.log(doc.data().name);
-      console.log(doc.data().uid);
-      console.log(doc.id);
       const uidUser = doc.data().uid;
       const postId = doc.id;
       const savePosts = document.createElement('div');

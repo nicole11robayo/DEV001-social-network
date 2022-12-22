@@ -1,7 +1,7 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Register } from '../src/Components/Register/registerIndex';
 import { validate } from '../src/Components/Register/registerValidate';
-import { onNavigate } from '../__mocks__/main.js';
+// import { onNavigate } from '../__mocks__/main.js';
 
 window.alert = jest.fn();
 jest.mock('firebase/auth');
@@ -9,9 +9,6 @@ jest.mock('firebase/auth');
 describe('test de registro', () => {
   const element = Register();
   const password1 = element.querySelector('#passwordInput');
-  const form = element.querySelector('#home');
-  const email = element.querySelector('#emailInput');
-  const elementOnNavigate = Register(onNavigate);
 
   it('debería ser una función', () => {
     expect(typeof Register).toBe('function');

@@ -49,7 +49,7 @@ export const Login = (onNavigate) => {
   passwordInput.setAttribute('name', 'password1');
 
   const imageEye = document.createElement('img');
-  imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+  imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
   imageEye.setAttribute('id', 'imageEye');
 
   const buttonRegister = document.createElement('button');
@@ -137,10 +137,10 @@ export const Login = (onNavigate) => {
   imageEye.addEventListener('click', () => {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
-      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
+      imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-slash-solid.svg';
     } else {
       passwordInput.type = 'password';
-      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+      imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
     }
   });
 

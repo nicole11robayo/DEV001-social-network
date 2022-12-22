@@ -77,9 +77,6 @@ export const Wall = (onNavigate) => {
 
   const usersUid = localStorage.getItem('uidUsuario');
   const displayName = localStorage.getItem('displayName');
-  console.log(usersUid);
-  console.log(localStorage);
-  console.log(document);
   nameUser.innerText = displayName;
 
   buttonSubmitPost.addEventListener('click', async (e) => {
@@ -131,7 +128,7 @@ export const Wall = (onNavigate) => {
 
       const imageLikePosts = document.createElement('img');
       imageLikePosts.className = 'imageLikePosts';
-      imageLikePosts.src = likesArray.includes(usersUid) ? 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/greenHearth.png' : 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/hearth.png';
+      imageLikePosts.src = likesArray.includes(usersUid) ? 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/greenHearth.png' : 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/hearth.png';
       imageLikePosts.setAttribute('id', 'imageLikePosts');
 
       const counterLikesPost = document.createElement('p');
@@ -168,7 +165,7 @@ export const Wall = (onNavigate) => {
               console.log('Quitamos tu like');
             })
             .catch((error) => console.log(error));
-          imageLikePosts.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/hearth.png';
+          imageLikePosts.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/hearth.png';
         } else {
           updateLikePost(postId, usersUid)
             .then(() => {
@@ -180,16 +177,12 @@ export const Wall = (onNavigate) => {
       });
 
       buttonEditPost.addEventListener('click', () => {
-        console.log(doc.data().post);
-        console.log(editPost.value);
-        console.log(postId);
         updatePost(postId, editPost.value)
           .then(() => console.log('tu post fue Editado'))
           .catch((error) => console.log(error));
       });
 
       imageDeletePosts.addEventListener('click', () => {
-        console.log(postId);
         if (window.confirm('¿Quieres borrar este post?')) {
           deletePost(postId)
             .then((user2) => {
@@ -205,7 +198,7 @@ export const Wall = (onNavigate) => {
   closeSesion.addEventListener('click', () => {
     logOut();
     localStorage.clear();
-    onNavigate('/');
+    onNavigate('/DEV001-social-network/');
   });
 
   return wallDiv;

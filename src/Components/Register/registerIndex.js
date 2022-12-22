@@ -108,11 +108,11 @@ export const Register = (onNavigate) => {
   errorPassword2.setAttribute('id', 'message-error-password-2');
 
   const imageEye = document.createElement('img');
-  imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+  imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
   imageEye.setAttribute('id', 'imageEye');
 
   const imageEye2 = document.createElement('img');
-  imageEye2.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+  imageEye2.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
   imageEye2.setAttribute('id', 'imageEye2');
 
   const buttonRegister = document.createElement('button');
@@ -236,10 +236,10 @@ export const Register = (onNavigate) => {
   imageEye.addEventListener('click', () => {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
-      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
+      imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-slash-solid.svg';
     } else {
       passwordInput.type = 'password';
-      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+      imageEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
     }
   });
 
@@ -248,10 +248,10 @@ export const Register = (onNavigate) => {
     const imageOpenEye = document.getElementById('imageEye2');
     if (passwordType2.type === 'password') {
       passwordType2.type = 'text';
-      imageOpenEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
+      imageOpenEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-slash-solid.svg';
     } else {
       passwordType2.type = 'password';
-      imageOpenEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
+      imageOpenEye.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/f9e942c5134b8cd076df1f39b134d9690aa35c11/src/Image/eye-solid.svg';
     }
   });
 

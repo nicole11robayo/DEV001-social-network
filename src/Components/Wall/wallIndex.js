@@ -18,13 +18,13 @@ export const Wall = (onNavigate) => {
   const userPlace = document.createElement('div');
   userPlace.className = 'userPlace';
   const imageGreaterThan = document.createElement('img');
-  imageGreaterThan.src = '../Image/mayorque.png';
+  imageGreaterThan.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/mayorque.png';
   imageGreaterThan.className = 'imagenMayor';
 
   const nameUser = document.createElement('h3');
 
   const imageLessThan = document.createElement('img');
-  imageLessThan.src = '../Image/menorque.png';
+  imageLessThan.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/menorque.png';
   imageLessThan.className = 'imagenMayor';
 
   const textStart = document.createElement('p');
@@ -33,7 +33,7 @@ export const Wall = (onNavigate) => {
 
   const imageGif = document.createElement('img');
   imageGif.className = 'imageGif';
-  imageGif.src = '../Image/celebrar.gif';
+  imageGif.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/celebrar.gif';
 
   const formWall = document.createElement('form');
   formWall.className = 'formWall';
@@ -110,10 +110,10 @@ export const Wall = (onNavigate) => {
       containerImagePosts.className = 'containerImagePosts';
       const imageEditPosts = document.createElement('img');
       imageEditPosts.setAttribute('class', 'imageEditPosts');
-      imageEditPosts.src = '../Image/edit.png';
+      imageEditPosts.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/edit.png';
       const imageDeletePosts = document.createElement('img');
       imageDeletePosts.setAttribute('class', 'imageDeletePosts');
-      imageDeletePosts.src = '../Image/trash.png';
+      imageDeletePosts.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/trash.png';
 
       const messagePosts = document.createElement('p');
       messagePosts.innerText = posts.post;
@@ -131,7 +131,7 @@ export const Wall = (onNavigate) => {
 
       const imageLikePosts = document.createElement('img');
       imageLikePosts.className = 'imageLikePosts';
-      imageLikePosts.src = likesArray.includes(usersUid) ? '../Image/Greenhearth.png' : '../Image/hearth.png';
+      imageLikePosts.src = likesArray.includes(usersUid) ? 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/greenHearth.png' : 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/hearth.png';
       imageLikePosts.setAttribute('id', 'imageLikePosts');
 
       const counterLikesPost = document.createElement('p');
@@ -168,14 +168,14 @@ export const Wall = (onNavigate) => {
               console.log('Quitamos tu like');
             })
             .catch((error) => console.log(error));
-          imageLikePosts.src = '../Image/hearth.png';
+          imageLikePosts.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/hearth.png';
         } else {
           updateLikePost(postId, usersUid)
             .then(() => {
               console.log('Apareció tu Like');
             })
             .catch((error) => console.log(error));
-          imageLikePosts.src = '../Image/greenHearth.png';
+          imageLikePosts.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/greenHearth.png';
         }
       });
 

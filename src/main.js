@@ -28,7 +28,7 @@ export const onNavigate = (pathname) => {
 };
 
 routes = {
-  '/DEV001-social-network/': Home(onNavigate),
+  '/': Home(onNavigate),
   '/register': Register(onNavigate),
   '/profile': Profile(onNavigate),
   '/login': Login(onNavigate),

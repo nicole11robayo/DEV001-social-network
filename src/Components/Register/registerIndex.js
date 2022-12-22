@@ -22,7 +22,7 @@ export const Register = (onNavigate) => {
   containerImageAndRegister.setAttribute('class', 'containerImageAndRegister');
 
   const imageRegister = document.createElement('img');
-  imageRegister.src = '../Image/registerLab.jpeg';
+  imageRegister.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/registerLab.jpeg';
   imageRegister.setAttribute('class', 'registerLab');
 
   const userDiv = document.createElement('div');
@@ -108,11 +108,11 @@ export const Register = (onNavigate) => {
   errorPassword2.setAttribute('id', 'message-error-password-2');
 
   const imageEye = document.createElement('img');
-  imageEye.src = '../Image/eye-solid.svg';
+  imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
   imageEye.setAttribute('id', 'imageEye');
 
   const imageEye2 = document.createElement('img');
-  imageEye2.src = '../Image/eye-solid.svg';
+  imageEye2.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
   imageEye2.setAttribute('id', 'imageEye2');
 
   const buttonRegister = document.createElement('button');
@@ -236,10 +236,10 @@ export const Register = (onNavigate) => {
   imageEye.addEventListener('click', () => {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
-      imageEye.src = '../Image/eye-slash-solid.svg';
+      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
     } else {
       passwordInput.type = 'password';
-      imageEye.src = '../Image/eye-solid.svg';
+      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
     }
   });
 
@@ -248,10 +248,10 @@ export const Register = (onNavigate) => {
     const imageOpenEye = document.getElementById('imageEye2');
     if (passwordType2.type === 'password') {
       passwordType2.type = 'text';
-      imageOpenEye.src = '../Image/eye-slash-solid.svg';
+      imageOpenEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
     } else {
       passwordType2.type = 'password';
-      imageOpenEye.src = '../Image/eye-solid.svg';
+      imageOpenEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
     }
   });
 

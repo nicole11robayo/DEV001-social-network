@@ -18,7 +18,7 @@ export const Login = (onNavigate) => {
   containerImageAndLogin.setAttribute('class', 'containerImageAndLogin');
 
   const imageLogin = document.createElement('img');
-  imageLogin.src = '../Image/loginLab.jpeg';
+  imageLogin.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/loginLab.jpeg';
   imageLogin.setAttribute('class', 'registerLab');
 
   const emailDiv = document.createElement('div');
@@ -49,7 +49,7 @@ export const Login = (onNavigate) => {
   passwordInput.setAttribute('name', 'password1');
 
   const imageEye = document.createElement('img');
-  imageEye.src = '../Image/eye-solid.svg';
+  imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
   imageEye.setAttribute('id', 'imageEye');
 
   const buttonRegister = document.createElement('button');
@@ -137,10 +137,10 @@ export const Login = (onNavigate) => {
   imageEye.addEventListener('click', () => {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
-      imageEye.src = '../Image/eye-slash-solid.svg';
+      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-slash-solid.svg';
     } else {
       passwordInput.type = 'password';
-      imageEye.src = '../Image/eye-solid.svg';
+      imageEye.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/eye-solid.svg';
     }
   });
 

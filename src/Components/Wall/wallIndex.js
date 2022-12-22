@@ -113,7 +113,7 @@ export const Wall = (onNavigate) => {
       imageEditPosts.src = 'https://raw.githubusercontent.com/nicole11robayo/DEV001-social-network/Registro/src/Image/edit.png';
       const imageDeletePosts = document.createElement('img');
       imageDeletePosts.setAttribute('class', 'imageDeletePosts');
-      imageDeletePosts.src = 'https://github.com/nicole11robayo/DEV001-social-network/blob/Registro/src/Image/trash.png';
+      imageDeletePosts.src = 'https://i.postimg.cc/3J45fJmY/trash.png';
 
       const messagePosts = document.createElement('p');
       messagePosts.innerText = posts.post;
